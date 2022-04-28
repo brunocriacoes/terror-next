@@ -1,13 +1,24 @@
+import { motion } from "framer-motion"
+import style from './style.module.css';
+
 export default function MyMenu() {
     return <>
-        <div>
+        <div className={style.container}>
             <div>
-                <img src="./logos/terro.svg" alt="Logo" />
+                <motion.div
+                    animate={{ x: [15, 0, 15] }}
+                    initial={true}
+                    transition={{ ease: "easeOut", duration: .5 }}
+                    
+                >
+                    <img className={style.logo} src="./logos/terro.svg" alt="Logo" />
+                </motion.div>
             </div>
-            <div hidden>Home</div>
-            <div hidden>Produtos</div>
-            <div hidden>Contato</div>
-            <div hidden>Onde Comprar</div>
+            <img src="./images/bg-menu.svg" className={style.bgMenu}/>
+            <div className={style.link}>Home</div>
+            <div className={style.link}>Produtos</div>
+            <div className={style.link}>Contato</div>
+            <div className={style.link}>Onde Comprar</div>
         </div>
     </>
 }

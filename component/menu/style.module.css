@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    padding: 0px 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    background-color: #225439;
+    height: 100px;
+}
+.bgMenu {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.logo {
+    display: block;
+    margin-top: 20px;
+}
+.link {
+    font-family: 'TTHoves-Bold';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    color: #EDDFD0;
+    margin-top: 40px;
+    cursor: pointer;
+}
