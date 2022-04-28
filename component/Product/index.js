@@ -1,32 +1,33 @@
 import style from './style.module.css'
 import { motion } from "framer-motion"
 
-export default function Product() {
+export default function Product({categories}) {
     return <>
-        <img src="./images/product-top.svg" className={style.productHeroImg} />
+        <img src="http://localhost:3000/images/product-top.svg" className={style.productHeroImg} />
         <div className="product_hero_content">
             <span className={style.productHeroTitle}>categorias</span>
             <div className={style.prodGrid}>
                 <motion.div
                     whileHover={{ scale: 1.1 }}
                     className={style.prev}>
-                    <img src="./ico/prev.svg" />
+                    <img src="http://localhost:3000/ico/prev.svg" />
                 </motion.div>
                 <motion.div
                     whileHover={{ scale: 1.1 }}
                     className={style.next}>
-                    <img src="./ico/next.svg" />
+                    <img src="http://localhost:3000/ico/next.svg" />
                 </motion.div>
-                {[1, 2, 3, 4].map((_, i )=>
+                {categories.map((cat, i )=>
                     <motion.a 
+                    key={cat.slug}
                     animate={{ x: [-25,0], opacity: [0,0, 1]  }}
                     transition={{ delay: i /5 }}
-                    href='' 
+                    href={'categoria-produto/'+cat.slug}
                     className={style.prod}>
-                        <img src='./categorias/acessorios.png' />
+                        <img src={cat.image} />
                         <span>
-                            <span>JARDINAGEM URBANA</span>
-                            <img src='./ico/arrow.svg' />
+                            <span>{cat.name}</span>
+                            <img src='http://localhost:3000/ico/arrow.svg' />
                         </span>
                     </motion.a>
                 )}

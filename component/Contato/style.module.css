@@ -1,26 +1,27 @@
-.lets_hero {
+.container {
+    background-color: #EDDFD0;
     display: block;
-    min-height: 100vh;
-    background-image: url('../public/images/bg-lets.png');
-    background-size: cover;
+    padding: 0 75px;
 }
 
-.lets_hero_title {
+.title {
     font-family: Beastly;
-    font-size: 58px;
+    font-size: 240px;
     font-weight: 400;
-    line-height: 70px;
+    line-height: 240px;
     letter-spacing: 0em;
     text-align: left;
-    color: #EDDFD0;
+    color: #225439;
+    display: block;
+
 }
 
-.lets_hero_subtitle {
+.link {
     font-family: 'TTHoves-Regular';
     font-size: 20px;
     font-weight: 500;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
-    color: #EDDFD0;
+    color: #225439;
 }

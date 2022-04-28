@@ -32,3 +32,8 @@ a {
   font-family: 'TTHoves-Light';
   src:  url('../public/font/TTHoves-Light.woff2') format('woff2');
 }
+
+.graph {
+  width: 100%;
+  margin: -7px 0;
+}

@@ -11,10 +11,10 @@ export default function MyMenu() {
                     transition={{ ease: "easeOut", duration: .5 }}
                     
                 >
-                    <img className={style.logo} src="./logos/terro.svg" alt="Logo" />
+                    <img className={style.logo} src="http://localhost:3000/logos/terro.svg" alt="Logo" />
                 </motion.div>
             </div>
-            <img src="./images/bg-menu.svg" className={style.bgMenu}/>
+            <img src="http://localhost:3000/images/bg-menu.svg" className={style.bgMenu}/>
             <div className={style.link}>Home</div>
             <div className={style.link}>Produtos</div>
             <div className={style.link}>Contato</div>

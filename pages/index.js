@@ -1,40 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { MyMenu, BannerHome, Product, Lets } from "../component/index"
+import { MyMenu, BannerHome, Product, Lets, Contato, Footer } from "../component/index"
 
 
-export default function HomePage() {
-    const [posts, setPosts] = useState([])
-    // useEffect(() => {
-    //     document.title = `Página inicial`
-    //     var headers = new Headers();
-    //     let jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93cG5leHQuY29uIiwiaWF0IjoxNjUwMjE1NjI4LCJuYmYiOjE2NTAyMTU2MjgsImV4cCI6MTY1MDgyMDQyOCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.5cProtYYf_gEFFj7utjdJgYff7E-OzWv_Rh4RNppNcs'
-    //     headers.append("Authorization", `Bearer ${jwt}`)
-    //     fetch("http://wpnext.con/wp-json/wc/v3/products", {
-    //         headers
-    //     })
-    //         .then(e => e.json())
-    //         .then(p =>
-    //             setPosts(p)
-    //         )
-    // }, []);
-
+export default function HomePage({allCats}) {
+    useEffect(() => {
+        document.title = `Página inicial`
+    }, []);
     return (
         <>
             <MyMenu />
             <BannerHome />
-            <Product />
+            <Product categories={allCats} />
             <Lets />
-            {/* {posts.map(post =>
-                <div>
-                    <a href={post.slug}>
-                        <img src={post.images[0].src} alt='imagem' height={200} /> <br />
-                    </a>
-                    <strong>{post.name}</strong> <br />
-                    <b>R${post.sale_price}</b>
-                    <p>{post.short_description}</p>
-                </div>
-            )} */}
-
+            <Contato />
+            <Footer />
         </>
     )
+}
+
+export async function getServerSideProps(context) {
+
+    let base = "http://wpnext.con/wp-json/wc/v3"
+    let jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93cG5leHQuY29uIiwiaWF0IjoxNjUxMDAzMDk0LCJuYmYiOjE2NTEwMDMwOTQsImV4cCI6MTY1MTYwNzg5NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.-RDZeXflgeUsXTK2e-BRYKXQXcUfYboqWFte-JDKrlY'
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${jwt}`)
+    let info = { headers }
+
+    let reqAllCats = await fetch(`${base}/products/categories`, info)
+    let allCats = await reqAllCats.json()
+    allCats = allCats.map(c => ({
+        name: c.name,
+        slug: c.slug,
+        id: c.id,
+        image: c.image?.src || null
+    })).filter(c => c.image)
+
+    return {
+        props: {
+            allCats
+        },
+    }
 }

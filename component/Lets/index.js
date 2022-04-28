@@ -1,15 +1,18 @@
+import style from './style.module.css';
+
 export default function Lets() {
     return <>
-    <div className="lets_hero">
+    <div className={style.container}>
 
-        <img src="./images/product-bottom.svg" className="product_hero_img" />
-        <h2 className="lets_hero_title">let's </h2>
-        <span className="lets_hero_subtitle">
+        <img src="./images/product-bottom.svg" className={style.graph_1} />
+        <h2 className={style.title_1}>let's </h2>
+        <span className={style.subtitle}>
             PRONTO PARA USO <br />
             É SÓ REGAR COM ÁGUA!
         </span>
-        <h2 className="lets_hero_title">grooow</h2>
-        <img src="./images/bg-top-contact.svg" className="product_hero_img" />
+        <h2 className={style.title_2}>grooow</h2>
+        <img src="./logos/green.svg" className={style.logo} />
+        <img src="./images/bg-top-contact.svg" className={style.graph_2} />
     </div>
     </>
 }

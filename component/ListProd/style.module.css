@@ -1,0 +1,10 @@
+.container {
+    display: grid;
+    padding: 0 70px;
+    background: #E5E5E5;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+.img {}
+.name {}
+.btn {}
