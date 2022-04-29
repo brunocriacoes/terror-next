@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { MyMenu, BannerCat, Product, Footer, ListProd } from "../../component/index"
+import { MyMenu, BannerCat, Product, Footer, ListProd} from "../../component/index"
 
 export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
-
-
     useEffect(() => {
         document.title = `Categoria`
     }, []);
     return <>
         <MyMenu />
         <BannerCat img={catImg} name={catName} />
-        <Product categories={allCats} />
         <ListProd prods={prods} />
+        <Product categories={allCats} />
         <Footer />
     </>
 }

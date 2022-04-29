@@ -6,5 +6,18 @@ import Contato from "./Contato/index";
 import Footer from "./Footer/index";
 import BannerCat from "./BannerCat/index";
 import ListProd from "./ListProd/index";
+import IconProdBottom from "./Icon/ProdBottom";
+import IconProdTop from "./Icon/ProdTop";
 
-export  { MyMenu, BannerHome, Product, Lets, Contato, Footer, BannerCat, ListProd };
+export {
+    MyMenu,
+    BannerHome,
+    Product,
+    Lets,
+    Contato,
+    Footer, 
+    BannerCat, 
+    ListProd, 
+    IconProdBottom,
+    IconProdTop
+};

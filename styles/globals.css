@@ -21,6 +21,11 @@ a {
 }
 
 @font-face {
+  font-family: 'TT Hoves';
+  src:  url('../public/font/TTHoves-Regular.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'TTHoves-Regular';
   src:  url('../public/font/TTHoves-Regular.woff2') format('woff2');
 }
