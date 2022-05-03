@@ -1,10 +1,15 @@
 import style from './style.module.css'
+import IconComprarAgora from "../Icon/ComprarAgora";
+import IconFacebook from "../Icon/Facebook";
+import IconInstagram from "../Icon/Instagram";
+import IconWhatsApp from "../Icon/WhatsApp";
+import Terror from "../Icon/Terror";
 
 export default function Footer() {
     return <>
         <div className={style.container}>
             <div>
-            <img src="http://localhost:3000/logos/terro.svg" />
+            <Terror color="#EDDFD0" />
             </div>
             <div>
                 <a href='' className={style.link}>Home</a>
@@ -12,12 +17,12 @@ export default function Footer() {
             </div>
             <div>
                 <a href='' className={style.link}>Produto</a>
-                <img src="http://localhost:3000/ico/whatsapp.svg" />
-                <img src="http://localhost:3000/ico/facebook.svg" />
-                <img src="http://localhost:3000/ico/instagram.svg" />
+                <IconWhatsApp color="#EDDFD0" />
+                <IconFacebook color="#EDDFD0" />
+                <IconInstagram color="#EDDFD0" />
             </div>
             <div>
-            <img src="http://localhost:3000/logos/green.svg" />
+            <IconComprarAgora color="#EDDFD0" />
             </div>
         </div>
     </>

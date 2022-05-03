@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MyMenu, BannerCat, Product, Footer, ListProd} from "../../component/index"
+import { MyMenu, BannerCat, Cats, Footer, ListProd} from "../../component/index"
 
 export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
     useEffect(() => {
@@ -9,7 +9,7 @@ export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
         <MyMenu />
         <BannerCat img={catImg} name={catName} />
         <ListProd prods={prods} />
-        <Product categories={allCats} />
+        <Cats categories={allCats} />
         <Footer />
     </>
 }
