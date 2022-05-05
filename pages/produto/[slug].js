@@ -5,7 +5,6 @@ import style from "./style.module.css"
 
 export default function ProdutoSingle({ produto, variationsProds }) {
     const [image, setImage] = useState(variationsProds[0].images[0].src)
-    console.log(variationsProds)
     return <>
         <MyMenu />
         <div className={style.container}>
@@ -16,6 +15,8 @@ export default function ProdutoSingle({ produto, variationsProds }) {
                     {variationsProds.map(prod => <>
                         <span
                             className={style.btVariation}
+                            onClick={() => setImage(prod.images[0].src)}
+                            key={produto.id}
                         >
                             {prod.name.split(' - ')[1]}
                         </span>

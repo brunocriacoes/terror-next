@@ -34,4 +34,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## link da api
-api-terro.regularswitch.com
+http://api-terro.regularswitch.com
+
+## online
+https://terrov2.vercel.app

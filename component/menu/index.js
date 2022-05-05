@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import style from './style.module.css';
+import Terror from "../Icon/Terror";
+import BgMenu from "../Icon/BgMenu";
 
 export default function MyMenu() {
     const base = process.env.NEXT_PUBLIC_URI
@@ -10,12 +12,13 @@ export default function MyMenu() {
                     animate={{ x: [15, 0, 15] }}
                     initial={true}
                     transition={{ ease: "easeOut", duration: .5 }}
-                    
+
                 >
-                    <img className={style.logo} src={base+"/logos/terro.svg"} alt="Logo" />
+                    <Terror color="#EDDFD0" />
                 </motion.div>
             </div>
-            <img src={base+"/images/bg-menu.svg"} className={style.bgMenu}/>
+            <BgMenu color="#225439"/>
+            
             <div className={style.link}>Home</div>
             <div className={style.link}>Produtos</div>
             <div className={style.link}>Contato</div>

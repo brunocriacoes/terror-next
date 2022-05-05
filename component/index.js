@@ -14,6 +14,7 @@ import IconInstagram from "./Icon/Instagram";
 import IconWhatsApp from "./Icon/WhatsApp";
 import IconComprarAgora from "./Icon/ComprarAgora";
 import Terror from "./Icon/Terror";
+import IconBgMenu from "./Icon/BgMenu";
 
 export {
     MyMenu,
@@ -32,4 +33,5 @@ export {
     IconComprarAgora,
     Terror,
     Cats,
+    IconBgMenu
 };

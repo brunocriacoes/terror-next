@@ -10,13 +10,6 @@
     background-color: #225439;
     height: 100px;
 }
-.bgMenu {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
 .logo {
     display: block;
     margin-top: 20px;
