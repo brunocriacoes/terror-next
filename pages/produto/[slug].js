@@ -3,14 +3,23 @@ import { MyMenu, Footer } from "../../component/index"
 
 import style from "./style.module.css"
 
-export default function ProdutoSingle({ produto }) {
+export default function ProdutoSingle({ produto, variationsProds }) {
+    const [image, setImage] = useState(variationsProds[0].images[0].src)
+    console.log(variationsProds)
     return <>
         <MyMenu />
         <div className={style.container}>
             <h1 className={style.title}>{produto.name}</h1>
             <div className={style.grid}>
                 <div>
-                    <img className={style.image} src={produto.images[0].src} />
+                    <img className={style.image} src={image} />
+                    {variationsProds.map(prod => <>
+                        <span
+                            className={style.btVariation}
+                        >
+                            {prod.name.split(' - ')[1]}
+                        </span>
+                    </>)}
                 </div>
                 <div>
                     <div dangerouslySetInnerHTML={{ __html: produto.description }} />
@@ -24,8 +33,9 @@ export default function ProdutoSingle({ produto }) {
 
 export async function getServerSideProps(context) {
 
-    let base = "http://wpnext.con/wp-json/wc/v3"
-    let jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93cG5leHQuY29uIiwiaWF0IjoxNjUxMDAzMDk0LCJuYmYiOjE2NTEwMDMwOTQsImV4cCI6MTY1MTYwNzg5NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.-RDZeXflgeUsXTK2e-BRYKXQXcUfYboqWFte-JDKrlY'
+    let base = process.env.PATH_URI;
+    let jwt = process.env.JWT;
+
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${jwt}`)
     let info = { headers }
@@ -35,10 +45,24 @@ export async function getServerSideProps(context) {
     let reqProduto = await fetch(`${base}/products/?slug=${slug}`, info)
     let produto = await reqProduto.json()
 
+    const variationIds = produto[0].variations || []
+    const metaData = {}
+    produto[0].meta_data.forEach(m => {
+        metaData[m.key] = m.value
+    });
+
+    const variationsProds = await Promise.all(variationIds.map(async id => {
+        let reqProduto = await fetch(`${base}/products/${id}`, info)
+        return await reqProduto.json()
+    }))
+
     return {
         props: {
             slug,
-            produto: produto[0]
+            produto: produto[0],
+            variationIds,
+            metaData,
+            variationsProds,
         },
     }
 }

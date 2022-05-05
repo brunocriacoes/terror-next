@@ -2,6 +2,7 @@ import style from "./style.module.css"
 import IconProdTop from "../Icon/ProdTop"
 import IconProdBottom from "../Icon/ProdBottom"
 export default function ListProd({ prods }) {
+    const base = process.env.NEXT_PUBLIC_URI
     return <>
         <IconProdTop color="#EDDFD0" />
         <a href="javascript:void(window.history.back())" className={style.linkPrev} >
@@ -13,11 +14,11 @@ export default function ListProd({ prods }) {
                     <img className={style.img} src={p.image} />
                     <strong className={style.name}>{p.name}</strong>
                     <span>4 estações</span>
-                    <a href={'http://localhost:3000/produto/' + p.slug} className={style.btn}> comprar agora </a>
+                    <a href={base + '/produto/' + p.slug} className={style.btn}> comprar agora </a>
                 </div>
             )}
         </div>
-        <div style={{backgroundColor: "#225439"}}>
+        <div style={{ backgroundColor: "#225439" }}>
             <IconProdBottom color="#EDDFD0" />
         </div>
     </>

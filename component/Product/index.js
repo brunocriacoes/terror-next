@@ -2,20 +2,21 @@ import style from './style.module.css'
 import { motion } from "framer-motion"
 
 export default function Product({categories}) {
+    const base = process.env.NEXT_PUBLIC_URI
     return <>
-        <img src="http://localhost:3000/images/product-top.svg" className={style.productHeroImg} />
+        <img src={base+"/images/product-top.svg"} className={style.productHeroImg} />
         <div className="product_hero_content">
             <span className={style.productHeroTitle}>categorias</span>
             <div className={style.prodGrid}>
                 <motion.div
                     whileHover={{ scale: 1.1 }}
                     className={style.prev}>
-                    <img src="http://localhost:3000/ico/prev.svg" />
+                    <img src={base+"/ico/prev.svg"} />
                 </motion.div>
                 <motion.div
                     whileHover={{ scale: 1.1 }}
                     className={style.next}>
-                    <img src="http://localhost:3000/ico/next.svg" />
+                    <img src={base+"/ico/next.svg"} />
                 </motion.div>
                 {categories.map((cat, i )=>
                     <motion.a 
@@ -27,7 +28,7 @@ export default function Product({categories}) {
                         <img src={cat.image} />
                         <span>
                             <span>{cat.name}</span>
-                            <img src='http://localhost:3000/ico/arrow.svg' />
+                            <img src={base+"/ico/arrow.svg"} />
                         </span>
                     </motion.a>
                 )}

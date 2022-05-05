@@ -16,8 +16,9 @@ export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
 
 export async function getServerSideProps(context) {
 
-    let base = "http://wpnext.con/wp-json/wc/v3"
-    let jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93cG5leHQuY29uIiwiaWF0IjoxNjUxMDAzMDk0LCJuYmYiOjE2NTEwMDMwOTQsImV4cCI6MTY1MTYwNzg5NCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiMSJ9fX0.-RDZeXflgeUsXTK2e-BRYKXQXcUfYboqWFte-JDKrlY'
+    let base = process.env.PATH_URI;
+    let jwt = process.env.JWT;    
+
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${jwt}`)
     let info = { headers }
@@ -26,6 +27,7 @@ export async function getServerSideProps(context) {
 
     let reqCast = await fetch(`${base}/products/categories?slug=${slug}`, info)
     let cat = await reqCast.json()
+
     let catID = cat[0].id
 
     let reqProds = await fetch(`${base}/products/?category=${catID}`, info)
