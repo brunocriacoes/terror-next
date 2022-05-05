@@ -3,6 +3,12 @@ import IconProdTop from "../Icon/ProdTop"
 import IconProdBottom from "../Icon/ProdBottom"
 export default function ListProd({ prods }) {
     const base = process.env.NEXT_PUBLIC_URI
+
+    const onError = ({ currentTarget }) => {
+        currentTarget.onerror = null;
+        currentTarget.src = base + "/images/default.png";
+    }
+
     return <>
         <IconProdTop color="#EDDFD0" />
         <a href="javascript:void(window.history.back())" className={style.linkPrev} >
@@ -11,7 +17,7 @@ export default function ListProd({ prods }) {
         <div className={style.container}>
             {prods.map(p =>
                 <div className={style.item}>
-                    <img className={style.img} src={p.image} />
+                    <img className={style.img} src={p.image+'k'} onError={onError} />
                     <strong className={style.name}>{p.name}</strong>
                     <span>4 estações</span>
                     <a href={base + '/produto/' + p.slug} className={style.btn}> comprar agora </a>

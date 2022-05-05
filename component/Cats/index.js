@@ -3,6 +3,10 @@ import { motion } from "framer-motion"
 
 export default function Cats({categories}) {
     const base = process.env.NEXT_PUBLIC_URI
+    const onError = ({ currentTarget }) => {
+        currentTarget.onerror = null;
+        currentTarget.src = base + "/images/default.png";
+    }
     return <>
             
         <div className="product_hero_content">
@@ -25,7 +29,7 @@ export default function Cats({categories}) {
                     transition={{ delay: i /5 }}
                     href={'categoria-produto/'+cat.slug}
                     className={style.prod}>
-                        <img src={cat.image} />
+                        <img src={cat.image} onError={onError} />
                         <span>
                             <span>{cat.name}</span>
                             <img src={base+"/ico/arrow.svg"} />
