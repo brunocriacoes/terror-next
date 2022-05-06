@@ -5,7 +5,9 @@ import Terror from "../Icon/Terror";
 import BgMenu from "../Icon/BgMenu";
 import SubMenu from "./SubMenu";
 
-export default function MyMenu({ categories }) {
+export default function MyMenu({ categories, bgColor }) {
+    let bg = bgColor || "#225439"
+    const base = process.env.NEXT_PUBLIC_URI
     const [isHover, toggleHover] = useState(false);
     const toggleHoverMenu = () => {
         toggleHover(!isHover);
@@ -32,7 +34,12 @@ export default function MyMenu({ categories }) {
         }
     };
     return <>
-        <div className={style.container}>
+        <div
+            className={style.container}
+            style={{
+                backgroundColor: bg
+            }}
+        >
             <div>
                 <motion.div
                     animate={{ x: [15, 0, 15] }}
@@ -43,9 +50,9 @@ export default function MyMenu({ categories }) {
                     <Terror color="#EDDFD0" />
                 </motion.div>
             </div>
-            <BgMenu color="#225439" />
+            <BgMenu color={bg} />
 
-            <div className={style.link}>Home</div>
+            <a href={base} className={style.link}>Home</a>
             <div className={style.flex_item}>
                 <motion.div
                     className={style.menu_item}
@@ -64,8 +71,8 @@ export default function MyMenu({ categories }) {
                     </motion.div>
                 </motion.div>
             </div>
-            <div className={style.link}>Contato</div>
-            <div className={style.link}>Onde Comprar</div>
+            <a href={base+"/contato"} className={style.link}>Contato</a>
+            <a href={base+"/onde-comprar"} className={style.link}>Onde Comprar</a>
         </div>
     </>
 }

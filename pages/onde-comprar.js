@@ -3,13 +3,13 @@ import { MyMenu, Footer } from "../component/index"
 
 import style from "../styles/ondeComprar.module.css";
 
-export default function OndeComprar() {
+export default function OndeComprar({allCats}) {
     useEffect(() => {
         document.title = `Página inicial`
     }, []);
     return (
         <>
-            <MyMenu />
+            <MyMenu categories={allCats} bgColor="#520091"/>
             <div className={style.container}>
                 <h1 className={style.title}>onde <br /> comprar</h1>
                 <div className={style.grid}>
@@ -71,7 +71,27 @@ export default function OndeComprar() {
 }
 
 export async function getServerSideProps(context) {
+
+    let base = process.env.PATH_URI;
+    let jwt = process.env.JWT;
+
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${jwt}`)
+    let info = { headers }
+    
+    let reqAllCats = await fetch(`${base}/products/categories`, info)
+    let allCats = await reqAllCats.json()
+    
+    allCats = allCats.map(c => ({
+        name: c.name,
+        slug: c.slug,
+        id: c.id,
+        image: c.image?.src || null
+    })).filter(c => c.image)
+
     return {
-        props: {},
+        props: {
+            allCats
+        },
     }
 }
