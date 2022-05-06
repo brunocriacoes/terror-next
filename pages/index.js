@@ -7,7 +7,7 @@ export default function HomePage({ allCats }) {
     }, []);
     return (
         <>
-            <MyMenu />
+            <MyMenu categories={allCats} />
             <BannerHome />
             <Product categories={allCats} />
             <Lets />
