@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MyMenu, BannerHome, Product, Lets, Contato, Footer } from "../component/index"
+import { MyMenu, BannerHome, Product, Lets, Contato, Footer } from "../components/index"
 
 export default function HomePage({ allCats }) {
     useEffect(() => {

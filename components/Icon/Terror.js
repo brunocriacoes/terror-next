@@ -1,9 +1,8 @@
 export default function Terror({ color }) {
     const base = process.env.NEXT_PUBLIC_URI
-    return <a
-        href={base}
-    >
+    return <a className="flex items-center" href={base}>
         <svg
+            className="mr-3 h-6 sm:h-9"
             width="166"
             height="70"
             viewBox="0 0 166 70"

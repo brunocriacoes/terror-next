@@ -1,23 +1,6 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-body {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: 'Beastly';
@@ -40,17 +23,4 @@ a {
 @font-face {
   font-family: 'TTHoves-Light';
   src:  url('../public/font/TTHoves-Light.woff2') format('woff2');
-}
-
-.graph {
-  width: 100%;
-  margin: -7px 0;
-}
-
-.bgMenu {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MyMenu, Footer } from "../../component/index"
+import { MyMenu, Footer } from "../../components/index"
 
 import style from "./style.module.css"
 

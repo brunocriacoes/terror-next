@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MyMenu, BannerCat, Cats, Footer, ListProd} from "../../component/index"
+import { MyMenu, BannerCat, Cats, Footer, ListProd} from "../../components/index"
 
 export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
     useEffect(() => {
