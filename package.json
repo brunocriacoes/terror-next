@@ -13,6 +13,7 @@
     "next": "12.1.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-multi-carousel": "^2.8.0",
     "reactstrap": "^9.0.2"
   },
   "devDependencies": {

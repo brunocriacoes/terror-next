@@ -1,42 +1,71 @@
 import style from './style.module.css'
 import { motion } from "framer-motion"
+import Image from 'next/image'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Link from 'next/link';
 
-export default function Product({categories}) {
-    const base = process.env.NEXT_PUBLIC_URI
+export default function Product({ categories }) {
+    const base = process.env.NEXT_PUBLIC_URI;
     const onError = ({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = base + "/images/default.png";
     }
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+            slidesToSlide: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1
+        }
+    };
     return <>
-        <img src={base+"/images/product-top.svg"} className={style.productHeroImg} />
         <div className="product_hero_content">
             <span className={style.productHeroTitle}>categorias</span>
-            <div className={style.prodGrid}>
-                <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className={style.prev}>
-                    <img src={base+"/ico/prev.svg"} />
-                </motion.div>
-                <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className={style.next}>
-                    <img src={base+"/ico/next.svg"} />
-                </motion.div>
-                {categories.map((cat, i )=>
-                    <motion.a 
-                    key={cat.slug}
-                    animate={{ x: [-25,0], opacity: [0,0, 1]  }}
-                    transition={{ delay: i /5 }}
-                    href={'categoria-produto/'+cat.slug}
-                    className={style.prod}>
-                        <img src={cat.image} onError={onError} />
-                        <span>
-                            <span>{cat.name}</span>
-                            <img src={base+"/ico/arrow.svg"} />
-                        </span>
-                    </motion.a>
+            <Carousel
+                swipeable={false}
+                draggable={false}
+                showDots={false}
+                responsive={responsive}
+                ssr={true}
+                infinite={true}
+                keyBoardControl={true}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                itemClass="carousel-item-padding-40-px"
+            >
+                {categories.map((cat, i) =>
+                    <div key={cat.slug}>
+                        <Link href={`categoria-produto/${cat.slug}`}>
+                            <a>
+                                <Image
+                                    src={cat.image}
+                                    alt="Categoria"
+                                    width={500}
+                                    height={500}
+                                    onError={onError}
+                                />
+                                <span>{cat.name}</span>
+                                <Image
+                                    src="/ico/arrow.svg"
+                                    alt="Arrows"
+                                    width={50}
+                                    height={50}
+                                />
+                            </a>
+                        </Link>
+                    </div>
                 )}
-            </div>
+            </Carousel>
         </div>
     </>
 }

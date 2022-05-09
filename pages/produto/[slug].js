@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { MyMenu, Footer } from "../../components/index"
+import Image from "next/image"
 
 import style from "./style.module.css"
 
 export default function ProdutoSingle({ produto, variationsProds }) {
-    const [image, setImage] = useState(variationsProds[0].images[0].src)
+    const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
+    const [image, setImage] = useState(imageProd)
+    console.log(produto.meta_data)
     return <>
         <MyMenu />
         <div className={style.container}>
             <h1 className={style.title}>{produto.name}</h1>
             <div className={style.grid}>
                 <div>
-                    <img className={style.image} src={image} />
+                    <Image
+                        src={image}
+                        alt="produto"
+                        width={500}
+                        height={500}
+                        className={style.image}
+                    />
                     {variationsProds.map(prod => <>
                         <span
                             className={style.btVariation}
@@ -20,6 +29,15 @@ export default function ProdutoSingle({ produto, variationsProds }) {
                         >
                             {prod.name.split(' - ')[1]}
                         </span>
+                        {produto.meta_data[6].value == 'Sim' &&
+                            < Image
+                                src={prod.imagem_dos_status}
+                                alt="produto"
+                                width={100}
+                                height={100}
+                                className={style.image}
+                            />
+                        }
                     </>)}
                 </div>
                 <div>
