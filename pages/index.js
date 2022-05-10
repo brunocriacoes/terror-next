@@ -17,8 +17,7 @@ export default function HomePage({ allCats }) {
     )
 }
 
-export async function getServerSideProps(context) {
-
+export async function getStaticProps(context) {
     let base = process.env.PATH_URI;
     let jwt = process.env.JWT;
 
@@ -40,5 +39,6 @@ export async function getServerSideProps(context) {
         props: {
             allCats
         },
+        revalidate: 10
     }
 }

@@ -14,8 +14,25 @@ export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
     </>
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${process.env.JWT}`);
+    let info = { headers };
 
+    let reqCategories = await fetch(`${process.env.PATH_URI}/products/categories`, info);
+    let categories = await reqCategories.json();
+
+    const paths = categories.map( category => {
+        return { params: { slug: category.slug } }
+    } )
+
+    return {
+        paths,
+        fallback: true
+    }
+}
+
+export async function getStaticProps(context) {
     let base = process.env.PATH_URI;
     let jwt = process.env.JWT;    
 
@@ -23,7 +40,7 @@ export async function getServerSideProps(context) {
     headers.append("Authorization", `Bearer ${jwt}`)
     let info = { headers }
 
-    let slug = context.query.slug
+    const { slug } = context.params;
 
     let reqCast = await fetch(`${base}/products/categories?slug=${slug}`, info)
     let cat = await reqCast.json()
@@ -57,5 +74,6 @@ export async function getServerSideProps(context) {
             prods,
             allCats
         },
+        revalidate: 10
     }
 }

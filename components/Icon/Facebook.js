@@ -4,7 +4,7 @@ export default function Facebook({ color }) {
         width={30}
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#a)">
+        <g clipPath="url(#a)">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
