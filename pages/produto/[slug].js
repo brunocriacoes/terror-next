@@ -4,44 +4,44 @@ import Image from "next/image"
 
 import style from "./style.module.css"
 
-export default function ProdutoSingle({ produto, variationsProds }) {
-    const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
-    const [image, setImage] = useState(imageProd);
+export default function ProdutoSingle({ listProdutos }) {
+    // const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
+    // const [image, setImage] = useState(produtos.variations.image);
 
     return <>
         <MyMenu />
         <div className={style.container}>
-            <h1 className={style.title}>{produto.name}</h1>
+            <h1 className={style.title}>{listProdutos.name}</h1>
             <div className={style.grid}>
                 <div>
-                    <Image
+                    {/* <Image
                         src={image}
                         alt="produto"
                         width={500}
                         height={500}
                         className={style.image}
-                    />
-                    {variationsProds.map(prod => <>
+                    /> */}
+                    {listProdutos.variations.map(produto => <>
                         <span
                             className={style.btVariation}
-                            onClick={() => setImage(prod.images[0].src)}
-                            key={prod.id}
+                            onClick={() => setImage(produto.image)}
+                            key={produto.id}
                         >
-                            {prod.name.split(' - ')[1]}
+                            {produto.name}
                         </span>
-                        {/* {produto.meta_data[6].value == 'Sim' &&
+                        {produto.meta_data[6].value == 'Sim' &&
                             < Image
-                                src={prod.imagem_dos_status}
+                                src={produto.imagem_dos_status}
                                 alt="produto"
                                 width={100}
                                 height={100}
                                 className={style.image}
                             />
-                        } */}
+                        }
                     </>)}
                 </div>
                 <div>
-                    <div dangerouslySetInnerHTML={{ __html: produto.description }} />
+                    <div dangerouslySetInnerHTML={{ __html: listProdutos.description }} />
                     <a className={style.btn}> ONDE COMPRAR </a>
                 </div>
             </div>
@@ -58,9 +58,9 @@ export async function getStaticPaths() {
     let reqCategories = await fetch(`${process.env.PATH_URI}/products`, info);
     let categories = await reqCategories.json();
 
-    const paths = categories.map( category => {
+    const paths = categories.map(category => {
         return { params: { slug: category.slug } }
-    } )
+    })
 
     return {
         paths,
@@ -68,38 +68,20 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({ params }) {
 
     let base = process.env.PATH_URI;
-    let jwt = process.env.JWT;
 
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${jwt}`)
-    let info = { headers };
-
-    const { slug } = context.params;
-
-    let reqProduto = await fetch(`${base}/products/?slug=${slug}`, info)
-    let produto = await reqProduto.json()
-
-    const variationIds = produto[0].variations || []
-    const metaData = {}
-    produto[0].meta_data.forEach(m => {
-        metaData[m.key] = m.value
-    });
-
-    const variationsProds = await Promise.all(variationIds.map(async id => {
-        let reqProduto = await fetch(`${base}/products/${id}`, info)
-        return await reqProduto.json()
-    }))
+    let reqProdutos  = await fetch(`http://api-terro.regularswitch.com/wp-json/api/v1/products?slug=${params.slug}`);
+    let listProdutos = await reqProdutos.json();
 
     return {
         props: {
-            produto: produto[0],
-            slug,
-            variationIds,
-            metaData,
-            variationsProds,
+            listProdutos,
+            // slug,
+            // variationIds,
+            // metaData,
+            // variationsProds,
         },
         revalidate: 10
     }
