@@ -5,8 +5,8 @@ import Image from "next/image"
 import style from "./style.module.css"
 
 export default function ProdutoSingle({ produto, variationsProds }) {
-    // const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
-    // const [image, setImage] = useState(imageProd);
+    const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
+    const [image, setImage] = useState(imageProd);
 
     return <>
         <MyMenu />
@@ -14,22 +14,22 @@ export default function ProdutoSingle({ produto, variationsProds }) {
             <h1 className={style.title}>{produto.name}</h1>
             <div className={style.grid}>
                 <div>
-                    {/* <Image
+                    <Image
                         src={image}
                         alt="produto"
                         width={500}
                         height={500}
                         className={style.image}
-                    /> */}
-                    {/* {variationsProds.map(prod => <>
+                    />
+                    {variationsProds.map(prod => <>
                         <span
                             className={style.btVariation}
                             onClick={() => setImage(prod.images[0].src)}
-                            key={produto.id}
+                            key={prod.id}
                         >
                             {prod.name.split(' - ')[1]}
                         </span>
-                        {produto.meta_data[6].value == 'Sim' &&
+                        {/* {produto.meta_data[6].value == 'Sim' &&
                             < Image
                                 src={prod.imagem_dos_status}
                                 alt="produto"
@@ -37,8 +37,8 @@ export default function ProdutoSingle({ produto, variationsProds }) {
                                 height={100}
                                 className={style.image}
                             />
-                        }
-                    </>)} */}
+                        } */}
+                    </>)}
                 </div>
                 <div>
                     <div dangerouslySetInnerHTML={{ __html: produto.description }} />
@@ -64,7 +64,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: true
+        fallback: false
     }
 }
 
@@ -77,30 +77,29 @@ export async function getStaticProps(context) {
     headers.append("Authorization", `Bearer ${jwt}`)
     let info = { headers };
 
-    // let slug = context.query.slug;
     const { slug } = context.params;
 
     let reqProduto = await fetch(`${base}/products/?slug=${slug}`, info)
     let produto = await reqProduto.json()
 
-    // const variationIds = produto[0].variations || []
-    // const metaData = {}
-    // produto[0].meta_data.forEach(m => {
-    //     metaData[m.key] = m.value
-    // });
+    const variationIds = produto[0].variations || []
+    const metaData = {}
+    produto[0].meta_data.forEach(m => {
+        metaData[m.key] = m.value
+    });
 
-    // const variationsProds = await Promise.all(variationIds.map(async id => {
-    //     let reqProduto = await fetch(`${base}/products/${id}`, info)
-    //     return await reqProduto.json()
-    // }))
+    const variationsProds = await Promise.all(variationIds.map(async id => {
+        let reqProduto = await fetch(`${base}/products/${id}`, info)
+        return await reqProduto.json()
+    }))
 
     return {
         props: {
             produto: produto[0],
-            // slug,
-            // variationIds,
-            // metaData,
-            // variationsProds,
+            slug,
+            variationIds,
+            metaData,
+            variationsProds,
         },
         revalidate: 10
     }
