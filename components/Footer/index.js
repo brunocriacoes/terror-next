@@ -15,12 +15,14 @@ export default function Footer({ corText, corBg }) {
 
     function LinkFooter({ text, link }) {
         return <Link href={link} >
-            <span
-                className="flex h-14 justify-center lg:justify-start items-center text-xl w-8/12 mx-auto lg:mx-0 font-TTHovesBold uppercase cursor-pointer"
-                style={styleLink}
-            >
-                <a>{text}</a>
-            </span>
+            <a>
+                <span
+                    className="flex h-14 justify-center lg:justify-start items-center text-xl w-8/12 mx-auto lg:mx-0 font-TTHovesBold uppercase cursor-pointer"
+                    style={styleLink}
+                >
+                    {text}
+                </span>
+            </a>
         </Link>
     }
 
