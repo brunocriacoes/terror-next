@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['api-terro.regularswitch.com']
+    domains: ['terro.app.br']
   }
 }
 

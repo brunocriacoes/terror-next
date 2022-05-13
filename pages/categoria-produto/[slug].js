@@ -15,11 +15,7 @@ export default function Categoria({ newcat, allCats }) {
 }
 
 export async function getStaticPaths() {
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${process.env.JWT}`);
-    let info = { headers };
-
-    let reqCategories = await fetch(`${process.env.PATH_URI}/products/categories`, info);
+    let reqCategories = await fetch(`${process.env.API_URL}/categories`);
     let categories = await reqCategories.json();
 
     const paths = categories.map( category => {
@@ -33,24 +29,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${process.env.JWT}`)
-    let info = { headers }
-
     const { slug } = context.params;
 
-    let newreqCast = await fetch(`http://api-terro.regularswitch.com/wp-json/api/v1/category?slug=${slug}`, info);
+    let newreqCast = await fetch(`${process.env.API_URL}/category?slug=${slug}`);
     let newcat     = await newreqCast.json();
 
-    let reqAllCats = await fetch(`${process.env.PATH_URI}/products/categories`, info)
+    let reqAllCats = await fetch(`${process.env.API_URL}/categories`);
     let allCats = await reqAllCats.json()
-    
-    allCats = allCats.map(c => ({
-        name: c.name,
-        slug: c.slug,
-        id: c.id,
-        image: c.image?.src || null
-    })).filter(c => c.image)
 
     return {
         props: {

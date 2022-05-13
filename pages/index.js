@@ -18,19 +18,8 @@ export default function HomePage({ allCats }) {
 }
 
 export async function getStaticProps(context) {
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${process.env.JWT}`)
-    let info = { headers }
-    
-    let reqAllCats = await fetch(`${process.env.PATH_URI}/products/categories`, info)
-    let allCats = await reqAllCats.json()
-    
-    allCats = allCats.map(c => ({
-        name: c.name,
-        slug: c.slug,
-        id: c.id,
-        image: c.image?.src || null
-    })).filter(c => c.image)
+    let reqAllCats = await fetch(`${process.env.API_URL}/categories`)
+    let allCats = await reqAllCats.json();
 
     return {
         props: {

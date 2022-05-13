@@ -51,14 +51,9 @@ export default function ProdutoSingle({ listProdutos }) {
 }
 
 export async function getStaticPaths() {
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${process.env.JWT}`);
-    let info = { headers };
-
-    let reqCategories = await fetch(`${process.env.PATH_URI}/products`, info);
-    let categories = await reqCategories.json();
-
-    const paths = categories.map(category => {
+    let reqProducts = await fetch(`${process.env.API_URL}/all-products`);
+    let products = await reqProducts.json();
+    const paths = products.map(category => {
         return { params: { slug: category.slug } }
     })
 
@@ -69,19 +64,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-
-    let base = process.env.PATH_URI;
-
-    let reqProdutos  = await fetch(`http://api-terro.regularswitch.com/wp-json/api/v1/products?slug=${params.slug}`);
+    let reqProdutos = await fetch(`${process.env.API_URL}/products?slug=${params.slug}`);
     let listProdutos = await reqProdutos.json();
 
     return {
         props: {
             listProdutos,
-            // slug,
-            // variationIds,
-            // metaData,
-            // variationsProds,
+            slug: params.slug
         },
         revalidate: 10
     }
