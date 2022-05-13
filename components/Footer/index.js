@@ -1,40 +1,58 @@
-import style from './style.module.css'
 import IconComprarAgora from "../Icon/ComprarAgora";
 import IconFacebook from "../Icon/Facebook";
 import IconInstagram from "../Icon/Instagram";
 import IconWhatsApp from "../Icon/WhatsApp";
 import Terror from "../Icon/Terror";
+import Link from 'next/link'
 
 export default function Footer({ corText, corBg }) {
     const cor = corText || "#EDDFD0"
+    const bg = corBg || "#225439"
     const styleLink = {
-        color: corText || "#EDDFD0",
-        borderBottom: " 1px solid " + cor
+        color: cor,
+        borderBottom: "1px solid " + cor
     }
-    const base = process.env.NEXT_PUBLIC_URI
+
+    function LinkFooter({ text, link }) {
+        return <Link href={link} >
+            <span
+                className="flex h-14 justify-center lg:justify-start items-center text-xl w-8/12 mx-auto lg:mx-0 font-TTHovesBold uppercase cursor-pointer"
+                style={styleLink}
+            >
+                <a>{text}</a>
+            </span>
+        </Link>
+    }
+
     return <>
         <div
-            className={style.container}
+            className="w-100 grid grid-cols-1 lg:grid-cols-4 py-10 lg:py-20"
             style={{
-                backgroundColor: corBg || "#225439",
-                color: corText || "#EDDFD0"
+                backgroundColor: bg,
+                color: cor
             }}
         >
+            <div className="flex justify-center">
+                <Terror color={cor} />
+            </div>
+            <span style={styleLink} className="w-8/12 mx-auto lg:mx-0 mt-7 lg:hidden"></span>
             <div>
-                <Terror color={corText || "#EDDFD0"} />
+                <LinkFooter text="Home" link="/" />
+                <LinkFooter text="Produto" link="/categoria-produto/cultivo-indoor" />
             </div>
             <div>
-                <a href={base+'/'} className={style.link} style={styleLink}>Home</a>
-                <a href={base+'/categoria-produto/cultivo-indoor'} className={style.link} style={styleLink}>Produto</a>
+                <LinkFooter text="Contato" link="/contato" />
+                <div
+                    className="flex justify-center lg:justify-start align-middle h-10 mt-4"
+                >
+                    <div className="block mx-5"><IconWhatsApp color={cor} /></div>
+                    <div className="block mx-5"><IconFacebook color={cor} /></div>
+                    <div className="block mx-5"><IconInstagram color={cor} /></div>
+                </div>
+                <span style={styleLink} className="flex w-8/12 mx-auto lg:mx-0 "></span>
             </div>
-            <div>
-                <a href={base+'/contato'} className={style.link} style={styleLink}>Contato</a>
-                <IconWhatsApp color={corText || "#EDDFD0"} />
-                <IconFacebook color={corText || "#EDDFD0"} />
-                <IconInstagram color={corText || "#EDDFD0"} />
-            </div>
-            <div>
-                <IconComprarAgora color={corText || "#EDDFD0"} />
+            <div className="hidden lg:block">
+                <IconComprarAgora color={cor} />
             </div>
         </div>
     </>

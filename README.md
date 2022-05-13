@@ -38,3 +38,8 @@ http://api-terro.regularswitch.com
 
 ## online
 https://terrov2.vercel.app
+
+
+## Slide DOC
+
+https://github.com/YIZHUANG/react-multi-carousel

@@ -1,13 +1,17 @@
 import Link from 'next/link';
-import React from 'react'
 
-function SubMenu({categories}) {
-    const base = process.env.NEXT_PUBLIC_URI;
+function SubMenu({categories, bgColor, color}) {
     return (
-        <div className='{style.sub_menu_container}'>
+        <div 
+        className="fixed top-20 p-5 rounded-lg"
+        style={{
+            backgroundColor: color,
+            color: bgColor
+        }}
+        >
             {categories?.map((cat, i) =>
-                <div key={cat.slug} className='{style.sub_menu_item}'>
-                    <Link href={base + '/categoria-produto/' + cat.slug}>
+                <div key={cat.slug} className="font-TTHovesBold">
+                    <Link href={`/categoria-produto/${cat.slug}`}>
                         <a>{cat.name}</a>
                     </Link>
                 </div>
