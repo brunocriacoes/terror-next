@@ -4,6 +4,7 @@ import Categories from "./Categories/index";
 import Lets from "./Lets/index";
 import Contato from "./Contato/index";
 import Footer from "./Footer/index";
+import MenuMobile from "./MenuMobile/index";
 import BannerCat from "./BannerCat/index";
 import ListProd from "./ListProd/index";
 import IconProdBottom from "./Icon/ProdBottom";
@@ -14,6 +15,7 @@ import IconWhatsApp from "./Icon/WhatsApp";
 import IconComprarAgora from "./Icon/ComprarAgora";
 import Terror from "./Icon/Terror";
 import IconBgMenu from "./Icon/BgMenu";
+import IconMenu from "./Icon/Menu";
 
 export {
     MyMenu,
@@ -31,5 +33,7 @@ export {
     IconWhatsApp,
     IconComprarAgora,
     Terror,
-    IconBgMenu
+    IconBgMenu,
+    IconMenu,
+    MenuMobile
 };

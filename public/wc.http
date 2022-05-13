@@ -6,6 +6,10 @@ GET {{host}}/wp-json/wc/v3/products/categories
 Authorization: Bearer {{jwt}}
 
 ###
+GET {{host}}/wp-json/wc/v3/products
+Authorization: Bearer {{jwt}}
+
+###
 GET {{host}}/wp-json/wc/v3/products/categories/?slug=cultivo-indoor
 Authorization: Bearer {{jwt}}
 

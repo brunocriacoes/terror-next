@@ -19,26 +19,28 @@ export default function Contato({ corText, corBg, pTop }) {
             }}
         >
             <span
-                className={style.title}
+                className="text-6xl lg:text-9xl font-Beastly block"
                 style={{
                     color: text,
                 }}
             >
                 contato
             </span>
-            <a
-                className={style.link}
-                href="mailto:VENDAS@TERRO.AGR.BR"
-                style={{
-                    color: text,
-                }}
-            >
-                VENDAS@TERRO.AGR.BR
-            </a>
-            <div>
-                <IconFacebook color={text} style={{ width: "50px" }} />
-                <IconInstagram color={text} style={{ width: "50px" }} />
-                <IconWhatsApp color={text} style={{ width: "50px" }} />
+            <div className="grid grid-col-1 lg:grid-cols-3">
+                <a
+                    className="mt-5 font-TTHovesBold"
+                    href="mailto:VENDAS@TERRO.AGR.BR"
+                    style={{
+                        color: text,
+                    }}
+                >
+                    VENDAS@TERRO.AGR.BR
+                </a>
+                <div className="flex gap-5 mt-5">
+                    <IconFacebook color={text} style={{ width: "50px" }} />
+                    <IconInstagram color={text} style={{ width: "50px" }} />
+                    <IconWhatsApp color={text} style={{ width: "50px" }} />
+                </div>
             </div>
         </div>
     </>
