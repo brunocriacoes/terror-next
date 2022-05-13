@@ -9,6 +9,12 @@ export default function MenuMobile() {
 
     function toggleMenu() {
         setIsOpen(!isOpen)
+    }    
+    
+    const [isOpenSub, setIsOpenSub] = useState(true)
+
+    function toggleMenuSub() {
+        setIsOpenSub(!isOpenSub)
     }
 
     const variants = {
@@ -43,29 +49,67 @@ export default function MenuMobile() {
 
     };
 
+    const boxVar = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 1,
+                delayChildren: 0.5,
+                staggerDirection: -1
+            }
+        },
+    }
 
-    function LinkMenuMobile({ href, text }) {
+    const listCategories = [
+        {text: "jardinagem urbana", href:"/"},
+        {text: "cultivo indoors", href:"/"},
+        {text: "fertilizantes", href:"/"},
+        {text: "acessórios", href:"/"},
+    ]
+
+    function LinkSubMenuMobile({ href, text }) {
         return <div
-            className="uppercase font-Beastly text-Light-Green text-3xl border-solid border-b-2 py-4 border-Light-Green"
+            className="font-TTHovesRegular text-Light-Green text-xs py-2"
         >
             <Link href={href}>
                 <a> {text} </a>
             </Link>
         </div>
+    }    
+    
+    function LinkMenuMobile({ href, text, sub }) {
+        return <div
+            className="uppercase font-Beastly text-Light-Green text-3xl border-solid border-b-2 py-4 border-Light-Green"
+        >
+            <Link href={href}>
+                <a className="flex justify-between" > 
+                {text} 
+                {sub && <span onClick={toggleMenuSub}> * </span> }                
+                </a>                
+            </Link>
+            <div className={`${isOpenSub && 'hidden'}`}>
+            {sub && sub.map( c => <><LinkSubMenuMobile {...c} /></>  )}
+            </div>
+        </div>
     }
 
     return <>
-        <div
-            className={`fixed top-0 left-0  p-7 w-full h-full z-20 ${!isOpen&&'hidden'}`}
+        <motion.div
+            animate={isOpen ? "visible" : "hidden"}
+            variants={boxVar}
+            className={`fixed top-0 left-0  p-7 w-full h-full z-20 ${!isOpen && 'hidden'}`}
         >
             <div className="border-solid border-b-2 py-4 border-Light-Green">
                 <Terror color="#EDDFD0" />
             </div>
             <LinkMenuMobile href="/" text="HOME" />
-            <LinkMenuMobile href="/categoria-produto" text="Produtos" />
+            <LinkMenuMobile href="" text="Produtos" sub={listCategories} />
             <LinkMenuMobile href="/contato" text="Contato" />
             <LinkMenuMobile href="/onde-comprar" text="Onde Comprar" />
-        </div>
+        </motion.div>
         <motion.div
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
