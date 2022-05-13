@@ -5,11 +5,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Link from 'next/link';
 
-export default function Product({ categories }) {
-    const base = process.env.NEXT_PUBLIC_URI;
+export default function Categories({ categories }) {
     const onError = ({ currentTarget }) => {
         currentTarget.onerror = null;
-        currentTarget.src = base + "/images/default.png";
+        currentTarget.src = "/images/default.png";
     }
     const responsive = {
         desktop: {
@@ -69,3 +68,44 @@ export default function Product({ categories }) {
         </div>
     </>
 }
+
+// export async function getStaticPaths() {
+//     let headers = new Headers();
+//     headers.append("Authorization", `Bearer ${process.env.JWT}`);
+//     let info = { headers };
+
+//     let requestCategories = await fetch(`${process.env.PATH_URI}/products/categories`, info);
+//     let categories        = await requestCategories.json();
+
+//     const paths = categories.map(category => {
+//         return { params: { slug: category.slug } }
+//     })
+
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
+
+// export async function getStaticProps() {
+//     let headers = new Headers();
+//     headers.append("Authorization", `Bearer ${process.env.JWT}`);
+//     let info = { headers };
+
+//     let requestCategories = await fetch(`${process.env.PATH_URI}/products/categories`, info);   
+//     let categories        = await requestCategories.json();
+
+//     const Allcategories = categories.map(category => ({
+//         name: category.name,
+//         slug: category.slug,
+//         id: category.id,
+//         image: category.image?.src || null
+//     })).filter(category => category.image)
+
+//     return {
+//         props: {
+//             Allcategories: ['dasdsad']
+//         },
+//         revalidate: 10
+//     }
+// }

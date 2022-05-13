@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { MyMenu, BannerCat, Cats, Footer, ListProd} from "../../components/index"
+import { MyMenu, BannerCat, Categories, Footer, ListProd} from "../../components/index"
 
-export default function Categoria({ slug, prods, allCats, catImg, catName  }) {
+export default function Categoria({ newcat, allCats }) {
     useEffect(() => {
         document.title = `Categoria`
     }, []);
     return <>
         <MyMenu />
-        <BannerCat img={catImg} name={catName} />
-        <ListProd prods={prods} />
-        <Cats categories={allCats} />
+        <BannerCat img={newcat.image} name={newcat.name} />
+        <ListProd prods={newcat.products} />
+        <Categories categories={allCats} />
         <Footer />
     </>
 }
@@ -28,36 +28,23 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: true
+        fallback: false
     }
 }
 
 export async function getStaticProps(context) {
-    let base = process.env.PATH_URI;
-    let jwt = process.env.JWT;    
-
     let headers = new Headers();
-    headers.append("Authorization", `Bearer ${jwt}`)
+    headers.append("Authorization", `Bearer ${process.env.JWT}`)
     let info = { headers }
 
     const { slug } = context.params;
 
-    let reqCast = await fetch(`${base}/products/categories?slug=${slug}`, info)
-    let cat = await reqCast.json()
+    let newreqCast = await fetch(`http://api-terro.regularswitch.com/wp-json/api/v1/category?slug=${slug}`, info);
+    let newcat     = await newreqCast.json();
 
-    let catID = cat[0].id
-
-    let reqProds = await fetch(`${base}/products/?category=${catID}`, info)
-    let prods = await reqProds.json()
-    prods = prods.map(p => ({
-        name: p.name,
-        slug: p.slug,
-        id: p.id,
-        image: p.images[0].src
-    }))
-
-    let reqAllCats = await fetch(`${base}/products/categories`, info)
+    let reqAllCats = await fetch(`${process.env.PATH_URI}/products/categories`, info)
     let allCats = await reqAllCats.json()
+    
     allCats = allCats.map(c => ({
         name: c.name,
         slug: c.slug,
@@ -67,11 +54,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {
-            slug,
-            catID,
-            catImg: cat[0].image.src,
-            catName: cat[0].name,
-            prods,
+            newcat,
             allCats
         },
         revalidate: 10

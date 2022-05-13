@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MyMenu, BannerHome, Product, Lets, Contato, Footer } from "../components/index"
+import { MyMenu, BannerHome, Categories, Lets, Contato, Footer } from "../components/index"
 
 export default function HomePage({ allCats }) {
     useEffect(() => {
@@ -9,7 +9,7 @@ export default function HomePage({ allCats }) {
         <>
             <MyMenu categories={allCats} />
             <BannerHome />
-            <Product categories={allCats} />
+            <Categories categories={allCats} />
             <Lets />
             <Contato />
             <Footer />
@@ -18,14 +18,11 @@ export default function HomePage({ allCats }) {
 }
 
 export async function getStaticProps(context) {
-    let base = process.env.PATH_URI;
-    let jwt = process.env.JWT;
-
     let headers = new Headers();
-    headers.append("Authorization", `Bearer ${jwt}`)
+    headers.append("Authorization", `Bearer ${process.env.JWT}`)
     let info = { headers }
     
-    let reqAllCats = await fetch(`${base}/products/categories`, info)
+    let reqAllCats = await fetch(`${process.env.PATH_URI}/products/categories`, info)
     let allCats = await reqAllCats.json()
     
     allCats = allCats.map(c => ({
