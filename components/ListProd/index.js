@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ListProd({ prods }) {
-    const base = process.env.NEXT_PUBLIC_URI
-
     const onError = ({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = "/images/default.png";
@@ -17,7 +15,7 @@ export default function ListProd({ prods }) {
         <a href="javascript:void(window.history.back())" className={style.linkPrev} >
             voltar
         </a>
-        <div className={style.container}>
+        <div className="grid grid-cols-1 lg:grid-cols-4 bg-Light-Orange gap-4 px-10">
             {prods.map(p =>
                 <div key={p.slug} className={style.item}>
                     <Image 

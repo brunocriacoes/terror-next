@@ -32,8 +32,8 @@ export default function Categories({ categories }) {
                 <span className="text-6xl lg:text-8xl text-Light-Orange font-Beastly font-normal">categorias</span>
 
                     <Carousel
-                        swipeable={false}
-                        draggable={false}
+                        swipeable={true}
+                        draggable={true}
                         showDots={false}
                         responsive={responsive}
                         ssr={true}

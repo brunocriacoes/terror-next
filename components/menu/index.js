@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import { motion } from "framer-motion"
 import Terror from "../Icon/Terror";
 import SubMenu from "./SubMenu";
@@ -6,9 +6,35 @@ import BgMenu from "../Icon/BgMenu";
 import Link from 'next/link'
 
 export default function MyMenu({ categories, bgColor, color }) {
-    let bg = bgColor || "#225439"
-    let cor = color || "#EDDFD0"
-    const base = process.env.NEXT_PUBLIC_URI
+    const [clientWindowHeight, setClientWindowHeight] = useState("");
+    const [backgroundTransparacy, setBackgroundTransparacy] = useState(0);
+    const [padding, setPadding] = useState(30);
+    const [boxShadow, setBoxShadow] = useState(0);
+
+    let bg = bgColor || "#225439";
+    let cor = color || "#EDDFD0";
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    });
+
+    const handleScroll = () => {
+        setClientWindowHeight(window.scrollY);
+    };
+
+    useEffect(() => {
+        let backgroundTransparacyVar = clientWindowHeight / 600;
+
+        if (backgroundTransparacyVar < 1) {
+            let paddingVar = 30 - backgroundTransparacyVar * 20;
+            let boxShadowVar = backgroundTransparacyVar * 0.1;
+            setBackgroundTransparacy(backgroundTransparacyVar);
+            setPadding(paddingVar);
+            setBoxShadow(boxShadowVar);
+        }
+    }, [clientWindowHeight]);
+
     const [isHover, toggleHover] = useState(false);
     const toggleHoverMenu = () => {
         toggleHover(!isHover);
@@ -48,15 +74,16 @@ export default function MyMenu({ categories, bgColor, color }) {
         </Link>
     }
     return <>
-
         <nav
-            className="flex flex-row items-center relative bg-Dark-Green h-24"
+            className="fixed top-0 left-0 right-0 grid grid-cols-1 w-full h-24 z-10"
             style={{
-                backgroundColor: bg
+                background: `rgba(34, 84, 57, ${backgroundTransparacy})`,
+                padding: `${padding}px 0px`,
+                boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
             }}
         >
-            <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <div className="basis-1/4 z-10 mx-auto">
+            <div className="grid grid-cols-4 justify-items-center items-center">
+                <div className="mx-auto">
                     <motion.div
                         animate={{ x: [15, 0, 15] }}
                         initial={true}
@@ -66,18 +93,18 @@ export default function MyMenu({ categories, bgColor, color }) {
                     </motion.div>
                 </div>
 
-                <div className="absolute top-0 left-0 z-0 hidden lg:block">
+                {/* <div className="absolute top-0 left-0 z-0 hidden lg:block">
                     <BgMenu color={bg} />
-                </div>
+                </div> */}
 
-                <div className="basis-3/4 hidden w-full md:block md:w-auto z-10" id="mobile-menu">
-                    <div className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-                        <div>
+                <div className="col-span-3 hidden w-full md:block md:w-auto z-10" id="mobile-menu">
+                    <div className="grid grid-cols-4 gap-4 items-center w-full">
+                        <div className="">
                             <LinkMenu href="/" text="Home" />
                         </div>
-                        <div>
+                        <div className="">
                             <motion.div
-                                className='{style.menu_item}'
+                                className=''
                                 onHoverStart={toggleHoverMenu}
                                 onHoverEnd={toggleHoverMenu}
                             >
@@ -91,13 +118,12 @@ export default function MyMenu({ categories, bgColor, color }) {
                                 </motion.div>
                             </motion.div>
                         </div>
-                        <div>
+                        <div className="">
                             <LinkMenu href="/contato" text="Contato" />
                         </div>
-                        <div>
+                        <div className="">
                             <LinkMenu href="/onde-comprar" text="Onde Comprar" />
                         </div>
-
                     </div>
                 </div>
             </div>
