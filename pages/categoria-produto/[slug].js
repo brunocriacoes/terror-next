@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { MyMenu, BannerCat, Categories, Footer, ListProd} from "../../components/index"
 
 export default function Categoria({ newcat, allCats }) {
+    console.log(newcat);
     useEffect(() => {
         document.title = `Categoria`
     }, []);
