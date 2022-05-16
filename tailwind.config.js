@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'hero-banner': "url('/images/bg-hero-banner.png')",
+        'bg-lets': "url('/images/bg-lets.png')",
+      },
       screens: {
         sm: '480px',
         md: '768px',

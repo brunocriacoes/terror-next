@@ -3,35 +3,17 @@ import Image from 'next/image';
 
 export default function Lets() {
     return <>
-        <div className={style.container}>
-
-            <Image
-                src="/images/product-bottom.svg"
-                alt="Arrow"
-                width={50}
-                height={50}
-                className={style.graph_1}
-            />
-            <h2 className={style.title_1}>lets </h2>
-            <span className={style.subtitle}>
-                PRONTO PARA USO <br />
-                É SÓ REGAR COM ÁGUA!
-            </span>
-            <h2 className={style.title_2}>grooow</h2>
-            <Image
-                src="/logos/green.svg"
-                alt="Arrow"
-                width={50}
-                height={50}
-                className={style.logo}
-            />
-            <Image
-                src="/images/bg-top-contact.svg"
-                alt="Arrow"
-                width={50}
-                height={50}
-                className={style.graph_2}
-            />
+        <div className="bg-bg-lets flex items-center justify-items-start bg-no-repeat bg-cover h-screen w-full">
+            <div className="pl-5 lg:pl-20">
+                <h1 className="block text-6xl lg:text-[300px] text-Light-Orange font-Beastly font-normal">let's</h1>
+                <div className='text-xs lg:text-lg text-Light-Orange font-TTHoves uppercase font-normal'>
+                    <span>
+                        PRONTO PARA USO<br/>
+                        É SÓ REGAR COM ÁGUA!
+                    </span>
+                </div>
+                <h1 className="block text-6xl lg:text-[300px] text-Light-Orange font-Beastly font-normal">grooow</h1>
+            </div>
         </div>
     </>
 }
