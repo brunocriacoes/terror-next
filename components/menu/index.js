@@ -5,14 +5,11 @@ import SubMenu from "./SubMenu";
 import BgMenu from "../Icon/BgMenu";
 import Link from 'next/link'
 
-export default function MyMenu({ categories, bgColor, color }) {
+export default function MyMenu({ categories, colorTheme, colorFont }) {
     const [clientWindowHeight, setClientWindowHeight] = useState("");
     const [backgroundTransparacy, setBackgroundTransparacy] = useState(0);
     const [padding, setPadding] = useState(30);
     const [boxShadow, setBoxShadow] = useState(0);
-
-    let bg = bgColor || "#225439";
-    let cor = color || "#EDDFD0";
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
@@ -65,7 +62,7 @@ export default function MyMenu({ categories, bgColor, color }) {
             <a
                 className="font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0"
                 style={{
-                    color: cor
+                    color: colorTheme
                 }}
             >
                 {text}
@@ -89,7 +86,7 @@ export default function MyMenu({ categories, bgColor, color }) {
                         initial={true}
                         transition={{ ease: "easeOut", duration: .5 }}
                     >
-                        <Terror color={cor} />
+                        <Terror color={colorTheme} />
                     </motion.div>
                 </div>
 
@@ -114,7 +111,7 @@ export default function MyMenu({ categories, bgColor, color }) {
                                     animate={isHover ? "enter" : "exit"}
                                     variants={subMenuAnimate}
                                 >
-                                    <SubMenu categories={categories} bgColor={bgColor} color={color} />
+                                    <SubMenu categories={categories} bgColor={colorTheme} color={colorFont} />
                                 </motion.div>
                             </motion.div>
                         </div>
