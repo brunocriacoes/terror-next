@@ -16,7 +16,7 @@ export default function NextPrev({color}) {
         <path
             d="M35.714 44.285 21.43 30l14.285-14.286"
             stroke={color}
-            stroke-width="2"
+            strokeWidth="2"
         />
     </svg>
 }

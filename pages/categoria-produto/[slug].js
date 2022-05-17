@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { MyMenu, BannerCat, Categories, Footer, ListProd} from "../../components/index"
 
 export default function Categoria({ newcat, allCats }) {
-    console.log(newcat.products);
     useEffect(() => {
         document.title = `Categoria`
     }, []);
     return <>
         <MyMenu colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
-        <BannerCat img={newcat.image} name={newcat.name} />
+        <BannerCat img={newcat.image} name={newcat.name} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte}  />
         <ListProd prods={newcat.products} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
         <Categories categories={allCats} />
-        <Footer />
+        <Footer corBg={newcat.custom_fields.cor_tema} corText={newcat.custom_fields.cor_fonte} />
     </>
 }
 
