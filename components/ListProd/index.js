@@ -4,7 +4,7 @@ import IconProdBottom from "../Icon/ProdBottom"
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ListProd({ prods }) {
+export default function ListProd({ prods, colorTheme, colorFont }) {
     const onError = ({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = "/images/default.png";
@@ -15,7 +15,7 @@ export default function ListProd({ prods }) {
         <a href="javascript:void(window.history.back())" className={style.linkPrev} >
             voltar
         </a>
-        <div className="grid grid-cols-1 lg:grid-cols-4 bg-Light-Orange gap-4 px-10">
+        <div className={`grid grid-cols-1 lg:grid-cols-4 bg-[${colorTheme}] gap-4 px-10`}>
             {prods.map(p =>
                 <div key={p.slug} className={style.item}>
                     <Image 
@@ -26,8 +26,8 @@ export default function ListProd({ prods }) {
                         height={300}
                         width={300}
                     />
-                    <strong className={style.name}>{p.name}</strong>
-                    <span>4 estações</span>
+                    <strong className={`font-Beastly font-normal text-[${colorFont}] text-xl lg:text-6xl`}>{p.name}</strong>
+                    <span className={`font-TTHoves uppercase font-medium text-[${colorFont}] text-sm lg:text-xl`}>{p.custom_fields.subtitulo }</span>
                     <Link href={'/produto/' + p.slug}>
                         <a className={style.btn}>Comprar Agora</a>
                     </Link>
