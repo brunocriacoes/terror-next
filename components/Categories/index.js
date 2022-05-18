@@ -4,7 +4,11 @@ import "react-multi-carousel/lib/styles.css";
 import Link from 'next/link';
 import NextPrev from '../Icon/NextPrev';
 
-export default function Categories({ categories }) {
+export default function Categories({ categories, colorTheme, colorFont }) {
+
+    const bg = colorFont || '#225439'
+    const text = colorTheme || '#EDDFD0'
+
     const onError = ({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = "/images/default.png";
@@ -29,24 +33,34 @@ export default function Categories({ categories }) {
 
     function CustomLeftArrow(props) {
         return <button type="button" {...props}
-            className="absolute left-0 -mt-12  z-50 text-white hover:bg-black rounded-full"
+            className="absolute left-0 -mt-12  z-0 text-white hover:bg-black rounded-full"
         >
             <NextPrev color="#EDDFD0" />
         </button>
     }
     function CustomRightArrow(props) {
         return <button type="button" {...props}
-            className="absolute right-0 -mt-12  z-50 text-white rotate-180 hover:bg-black rounded-full"
+            className="absolute right-0 -mt-12  z-0 text-white rotate-180 hover:bg-black rounded-full"
         >
             <NextPrev color="#EDDFD0" />
         </button>
     }
 
     return <>
-        <div className='bg-Dark-Green px-0 lg:px-20 '>
+        <div
+            className='bg-Dark-Green px-0 lg:px-20'
+            style={{
+                backgroundColor: bg
+            }}
+        >
             <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-full lg:px-8">
                 <span
-                    className="lg:-mt-44 text-6xl lg:text-8xl text-Light-Orange font-Beastly font-normal lg:text-right block lg:pb-4">
+                    className="lg:-mt-44 text-6xl lg:text-8xl text-Light-Orange font-Beastly font-normal lg:text-right block lg:pb-4"
+                    style={{
+                        color: text
+                    }}
+                >
+
                     categorias
                 </span>
                 <Carousel

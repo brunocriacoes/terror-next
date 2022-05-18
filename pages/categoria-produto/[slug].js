@@ -9,8 +9,8 @@ export default function Categoria({ newcat, allCats }) {
         <MyMenu colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
         <BannerCat img={newcat.image} name={newcat.name} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte}  />
         <ListProd prods={newcat.products} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
-        <Categories categories={allCats} />
-        <Footer corBg={newcat.custom_fields.cor_tema} corText={newcat.custom_fields.cor_fonte} />
+        <Categories categories={allCats} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
+        <Footer corBg={newcat.custom_fields.cor_tema||'#EDDFD0'} corText={newcat.custom_fields.cor_fonte|| '#225439'} />
     </>
 }
 
