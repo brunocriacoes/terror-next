@@ -24,6 +24,7 @@ module.exports = {
         'Light-Orange': '#EDDFD0',
         'Beige': '#F1E4B2',
         'Lilac': '#F1E4B2',
+        'Purple': '#520091',
       },
       fontFamily: {
         Beastly: ["Beastly", ...defaultTheme.fontFamily.sans],
