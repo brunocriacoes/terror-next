@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import react, { useState } from "react"
 import Link from 'next/link'
 
-export default function MenuMobile({ colorTheme, colorFont }) {
+export default function MenuMobile({ colorTheme, colorFont, categories }) {
+    console.log(categories)
 
     const [isOpen, setIsOpen] = useState(false)
 

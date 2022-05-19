@@ -6,7 +6,7 @@ export default function Categoria({ newcat, allCats }) {
         document.title = `Categoria`
     }, []);
     return <>
-        <MyMenu colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
+        <MyMenu categories={allCats} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
         <BannerCat img={newcat.image} name={newcat.name} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte}  />
         <ListProd prods={newcat.products} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />
         <Categories categories={allCats} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />

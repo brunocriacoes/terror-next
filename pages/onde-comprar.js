@@ -3,13 +3,13 @@ import { MyMenu, Footer } from "../components/index"
 
 import style from "../styles/ondeComprar.module.css";
 
-export default function OndeComprar() {
+export default function OndeComprar({allCats}) {
     useEffect(() => {
         document.title = `Página inicial`
     }, []);
     return (
         <>
-            <MyMenu bgColor="#C0E0CC"/>
+            <MyMenu categories={allCats}  colorFont="#520091" colorTheme="#C0E0CC"/>
             <div className="pt-40 bg-Purple px-5 lg:px-20">
                 <h1 className="font-Beastly text-Light-Green text-7xl lg:text-[240px] font-normal">onde <br /> comprar</h1>
                 <div className={style.grid}>
@@ -64,4 +64,16 @@ export default function OndeComprar() {
             <Footer corText="#520091" corBg="#C0E0CC" />
         </>
     )
+}
+
+export async function getStaticProps(context) {
+    let reqAllCats = await fetch(`${process.env.API_URL}/categories`)
+    let allCats = await reqAllCats.json();
+
+    return {
+        props: {
+            allCats
+        },
+        revalidate: 10
+    }
 }

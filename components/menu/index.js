@@ -139,6 +139,6 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                 </div>
             </div>
         </nav>
-        <MenuMobile colorTheme={colorTheme|| '#EDDFD0'} colorFont={colorFont || '#225439'} />
+        <MenuMobile categories={categories} colorTheme={colorTheme|| '#EDDFD0'} colorFont={colorFont || '#225439'} />
     </>
 }

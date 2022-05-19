@@ -12,30 +12,14 @@ export default function ContatoPage({ allCats }) {
     )
 }
 
-export async function getServerSideProps(context) {
-
-    let base = process.env.PATH_URI;
-    let jwt = process.env.JWT;
-
-    let headers = new Headers();
-    headers.append("Authorization", `Bearer ${jwt}`)
-    let info = { headers }
-
-    let reqAllCats = await fetch(`${base}/products/categories`, info)
-    let allCats = await reqAllCats.json() 
-
-    if(typeof allCats == 'object') allCats = []
-
-    allCats = allCats.map(c => ({
-        name: c.name,
-        slug: c.slug,
-        id: c.id,
-        image: c.image?.src || null
-    })).filter(c => c.image) || []
+export async function getStaticProps(context) {
+    let reqAllCats = await fetch(`${process.env.API_URL}/categories`)
+    let allCats = await reqAllCats.json();
 
     return {
         props: {
             allCats
         },
+        revalidate: 10
     }
 }
