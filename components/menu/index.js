@@ -4,6 +4,7 @@ import Terror from "../Icon/Terror";
 import SubMenu from "./SubMenu";
 import BgMenu from "../Icon/BgMenu";
 import Link from 'next/link'
+import MenuMobile from "../MenuMobile";
 
 export default function MyMenu({ categories, colorTheme, colorFont }) {
     const [clientWindowHeight, setClientWindowHeight] = useState("");
@@ -138,5 +139,6 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                 </div>
             </div>
         </nav>
+        <MenuMobile colorTheme={colorTheme|| '#EDDFD0'} colorFont={colorFont || '#225439'} />
     </>
 }
