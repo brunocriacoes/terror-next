@@ -19,7 +19,7 @@ export default function Contato({ corText, corBg, pTop }) {
             }}
         >
             <span
-                className="text-6xl lg:text-9xl font-Beastly block pt-16"
+                className="text-6xl lg:text-[240px] font-Beastly block pt-16"
                 style={{
                     color: text,
                 }}

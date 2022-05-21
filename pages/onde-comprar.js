@@ -5,26 +5,26 @@ import style from "../styles/ondeComprar.module.css";
 
 export default function OndeComprar({allCats}) {
     useEffect(() => {
-        document.title = `Página inicial`
+        document.title = `Onde Comprar`
     }, []);
     return (
         <>
             <MyMenu categories={allCats}  colorFont="#520091" colorTheme="#C0E0CC"/>
             <div className="pt-40 bg-Purple px-5 lg:px-20">
                 <h1 className="font-Beastly text-Light-Green text-7xl lg:text-[240px] font-normal">onde <br /> comprar</h1>
-                <div className={style.grid}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 items-center mt-7">
                     <div>
                         <h2 className="text-5xl lg:text-7xl font-Beastly text-Light-Green">lojas físicas</h2>
-                        <span className="inline-block font-Beastly text-4xl text-Purple bg-Light-Green px-2 font-normal my-7 lg:my-14">são paulo</span>
                     </div>
-                    <div className={style.flex}>
-                        <span className={style.textTitle}>Estado:</span>
+                    <div className="grid items-center grid-cols-1 justify-center gap-4 lg:grid-cols-2">
+                        <span className="font-TTHoves text-2xl text-Light-Green">Estado:</span>
                         <select className={style.select}>
                             <option> São Paulo </option>
                             <option> Paraná </option>
                         </select>
                     </div>
                 </div>
+                <span className="inline-block font-Beastly text-4xl text-Purple bg-Light-Green px-2 font-normal my-7 lg:my-14">são paulo</span>
                 <div className="grid grid-cols-1 lg:grid-cols-2 mb-20 lg:mb-24">
                     <p className="mb-4">
                         <strong className="block text-2xl text-Light-Green font-TTHoves font-black uppercase">Belli Roots</strong>

@@ -5,8 +5,9 @@ import Image from "next/image"
 import style from "./style.module.css"
 
 export default function ProdutoSingle({ listProdutos }) {
-    // const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
-    // const [image, setImage] = useState(produtos.variations.image);
+    useEffect(() => {
+        document.title = listProdutos.name
+    }, []);
 
     return <>
         <MyMenu />
@@ -29,7 +30,7 @@ export default function ProdutoSingle({ listProdutos }) {
                         >
                             {produto.name}
                         </span>
-                        {produto.meta_data[6].value == 'Sim' &&
+                        {/* {produto.meta_data[6].value == 'Sim' &&
                             < Image
                                 src={produto.imagem_dos_status}
                                 alt="produto"
@@ -37,7 +38,7 @@ export default function ProdutoSingle({ listProdutos }) {
                                 height={100}
                                 className={style.image}
                             />
-                        }
+                        } */}
                     </>)}
                 </div>
                 <div>

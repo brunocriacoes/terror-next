@@ -119,7 +119,8 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                                 onHoverStart={toggleHoverMenu}
                                 onHoverEnd={toggleHoverMenu}
                             >
-                                <LinkMenu href="/categoria-produto" text="Categorias" />
+                                {/* <LinkMenu href="/categoria-produto" text="Categorias" /> */}
+                                <span className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'>Categorias</span>
                                 <motion.div
                                     initial="exit"
                                     animate={isHover ? "enter" : "exit"}

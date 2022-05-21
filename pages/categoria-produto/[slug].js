@@ -3,7 +3,7 @@ import { MyMenu, BannerCat, Categories, Footer, ListProd} from "../../components
 
 export default function Categoria({ newcat, allCats }) {
     useEffect(() => {
-        document.title = `Categoria`
+        document.title = newcat.name
     }, []);
     return <>
         <MyMenu categories={allCats} colorTheme={newcat.custom_fields.cor_tema} colorFont={newcat.custom_fields.cor_fonte} />

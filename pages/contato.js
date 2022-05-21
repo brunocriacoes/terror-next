@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MyMenu, Contato, Footer } from "../components/index"
 
 export default function ContatoPage({ allCats }) {
+    useEffect(() => {
+        document.title = `Contato`
+    }, []);
     return (
         <>
             <MyMenu categories={allCats}  colorTheme="#520091" colorFont="#C0E0CC"/>
