@@ -3,14 +3,16 @@ import Terror from "../Icon/Terror.js"
 import { motion } from "framer-motion"
 import react, { useState } from "react"
 import Link from 'next/link'
-export default function MenuMobile() {
+
+export default function MenuMobile({ colorTheme, colorFont, categories }) {
+    console.log(categories)
 
     const [isOpen, setIsOpen] = useState(false)
 
     function toggleMenu() {
         setIsOpen(!isOpen)
-    }    
-    
+    }
+
     const [isOpenSub, setIsOpenSub] = useState(true)
 
     function toggleMenuSub() {
@@ -64,34 +66,41 @@ export default function MenuMobile() {
     }
 
     const listCategories = [
-        {text: "jardinagem urbana", href:"/"},
-        {text: "cultivo indoors", href:"/"},
-        {text: "fertilizantes", href:"/"},
-        {text: "acessórios", href:"/"},
+        { text: "jardinagem urbana", href: "/" },
+        { text: "cultivo indoors", href: "/" },
+        { text: "fertilizantes", href: "/" },
+        { text: "acessórios", href: "/" },
     ]
 
-    function LinkSubMenuMobile({ href, text }) {
+    function LinkSubMenuMobile({ href, text, color }) {
         return <div
-            className="font-TTHovesRegular text-Light-Green text-xs py-2"
+            className={'font-TTHovesRegular text-xs py-2'}
+            style={{
+                color
+            }}
         >
             <Link href={href}>
                 <a> {text} </a>
             </Link>
         </div>
-    }    
-    
-    function LinkMenuMobile({ href, text, sub }) {
+    }
+
+    function LinkMenuMobile({ href, text, sub, color }) {
         return <div
-            className="uppercase font-Beastly text-Light-Green text-3xl border-solid border-b-2 py-4 border-Light-Green"
+            className={'uppercase font-Beastly  text-3xl border-solid border-b-2 py-4'}
+            style={{
+                color,
+                borderColor: color,
+            }}
         >
             <Link href={href}>
-                <a className="flex justify-between" > 
-                {text} 
-                {sub && <span onClick={toggleMenuSub}> * </span> }                
-                </a>                
+                <a className="flex justify-between" >
+                    {text}
+                    {sub && <span onClick={toggleMenuSub}> * </span>}
+                </a>
             </Link>
             <div className={`${isOpenSub && 'hidden'}`}>
-            {sub && sub.map( c => <><LinkSubMenuMobile {...c} /></>  )}
+                {sub && sub.map(c => <><LinkSubMenuMobile {...c} /></>)}
             </div>
         </div>
     }
@@ -102,44 +111,64 @@ export default function MenuMobile() {
             variants={boxVar}
             className={`fixed top-0 left-0  p-7 w-full h-full z-20 ${!isOpen && 'hidden'}`}
         >
-            <div className="border-solid border-b-2 py-4 border-Light-Green">
-                <Terror color="#EDDFD0" />
+            <div
+                className={'border-solid border-b-2 py-4 '}
+                style={{
+                    borderColor: colorFont
+                }}
+            >
+                <Terror color={colorFont} />
             </div>
-            <LinkMenuMobile href="/" text="HOME" />
-            <LinkMenuMobile href="" text="Produtos" sub={listCategories} />
-            <LinkMenuMobile href="/contato" text="Contato" />
-            <LinkMenuMobile href="/onde-comprar" text="Onde Comprar" />
+            <LinkMenuMobile color={colorFont} href="/" text="HOME" />
+            <LinkMenuMobile color={colorFont} href="" text="Produtos" sub={listCategories} />
+            <LinkMenuMobile color={colorFont} href="/contato" text="Contato" />
+            <LinkMenuMobile color={colorFont} href="/onde-comprar" text="Onde Comprar" />
         </motion.div>
         <motion.div
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={variants}
             className="lg:hidden z-10 fixed bottom-5 left-5 bg-Dark-Green rounded-full p-7"
+            style={{
+                backgroundColor: colorTheme
+            }}
         > </motion.div>
         <motion.div
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={left}
             className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-14'} -transition-all left-8`}
+            style={{
+                backgroundColor: colorFont
+            }}
         ></motion.div>
         <motion.div
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={left}
             className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-11'} -transition-all left-8`}
+            style={{
+                backgroundColor: colorFont
+            }}
         ></motion.div>
         <motion.div
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={right}
             className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-8'} -transition-all left-8`}
+            style={{
+                backgroundColor: colorFont
+            }}
         ></motion.div>
         <div
             onClick={toggleMenu}
             className="lg:hidden z-30 fixed bottom-5 left-5  rounded-full p-7"
         > </div>
         <div
-            className="lg:hidden z-10 bg-Light-Green fixed bottom-5 left-5  rounded-full p-7"
+            className={'lg:hidden z-10 fixed bottom-5 left-5  rounded-full p-7'}
+            style={{
+                backgroundColor: colorTheme
+            }}
         > </div>
     </>
 }

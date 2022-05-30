@@ -11,7 +11,7 @@ export default function Contato({ corText, corBg, pTop }) {
 
     return <>
         <div
-            className={style.container}
+            className="px-2 px-5 lg:px-[70px] lg:h-[58vh]"
             style={{
                 backgroundColor: bg,
                 color: text,
@@ -19,14 +19,14 @@ export default function Contato({ corText, corBg, pTop }) {
             }}
         >
             <span
-                className="text-6xl lg:text-9xl font-Beastly block"
+                className="text-6xl lg:text-[240px] font-Beastly block pt-16"
                 style={{
                     color: text,
                 }}
             >
                 contato
             </span>
-            <div className="grid grid-col-1 lg:grid-cols-3">
+            <div className="grid grid-col-1 lg:grid-cols-3 pb-6">
                 <a
                     className="mt-5 font-TTHovesBold"
                     href="mailto:VENDAS@TERRO.AGR.BR"

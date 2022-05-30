@@ -41,6 +41,34 @@ export default function ProdutoSingle({ listProdutos }) {
                         {listProdutos.custom_fields.adubo == 'Sim' &&
                             <Image
                                 src={listProdutos.custom_fields.imagem_dos_status}
+    useEffect(() => {
+        document.title = listProdutos.name
+    }, []);
+
+    return <>
+        <MyMenu />
+        <div className={style.container}>
+            <h1 className={style.title}>{listProdutos.name}</h1>
+            <div className={style.grid}>
+                <div>
+                    {/* <Image
+                        src={image}
+                        alt="produto"
+                        width={500}
+                        height={500}
+                        className={style.image}
+                    /> */}
+                    {listProdutos.variations.map(produto => <>
+                        <span
+                            className={style.btVariation}
+                            onClick={() => setImage(produto.image)}
+                            key={produto.id}
+                        >
+                            {produto.name}
+                        </span>
+                        {/* {produto.meta_data[6].value == 'Sim' &&
+                            < Image
+                                src={produto.imagem_dos_status}
                                 alt="produto"
                                 width={100}
                                 height={100}
@@ -49,6 +77,12 @@ export default function ProdutoSingle({ listProdutos }) {
                         }
                         <a className={style.btn}> ONDE COMPRAR </a>
                     </div>
+                        } */}
+                    </>)}
+                </div>
+                <div>
+                    <div dangerouslySetInnerHTML={{ __html: listProdutos.description }} />
+                    <a className={style.btn}> ONDE COMPRAR </a>
                 </div>
             </div>
         </div>
