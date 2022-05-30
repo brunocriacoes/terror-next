@@ -5,7 +5,6 @@ import react, { useState } from "react"
 import Link from 'next/link'
 
 export default function MenuMobile({ colorTheme, colorFont, categories }) {
-    console.log(categories)
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -100,7 +99,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
                 </a>
             </Link>
             <div className={`${isOpenSub && 'hidden'}`}>
-                {sub && sub.map(c => <><LinkSubMenuMobile {...c} /></>)}
+                {sub && sub.map(c => < ><LinkSubMenuMobile key={c.slug} {...c} /></>)}
             </div>
         </div>
     }

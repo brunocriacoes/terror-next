@@ -120,7 +120,14 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                                 onHoverEnd={toggleHoverMenu}
                             >
                                 {/* <LinkMenu href="/categoria-produto" text="Categorias" /> */}
-                                <span className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'>Categorias</span>
+                                <span
+                                    className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'
+                                    style={{
+                                        color: colorTheme
+                                    }}
+                                >
+                                    Categorias
+                                </span>
                                 <motion.div
                                     initial="exit"
                                     animate={isHover ? "enter" : "exit"}
@@ -140,6 +147,6 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                 </div>
             </div>
         </nav>
-        <MenuMobile categories={categories} colorTheme={colorTheme|| '#EDDFD0'} colorFont={colorFont || '#225439'} />
+        <MenuMobile categories={categories} colorTheme={colorTheme || '#EDDFD0'} colorFont={colorFont || '#225439'} />
     </>
 }

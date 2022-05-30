@@ -4,89 +4,82 @@ import Image from "next/image"
 
 import style from "./style.module.css"
 
-export default function ProdutoSingle({ listProdutos }) {
-    console.log(listProdutos)
-    // const imageProd = variationsProds[0] ? variationsProds[0].images[0].src : "/images/default.png";
-    // const [image, setImage] = useState(produtos.variations.image);
+export default function ProdutoSingle({ listProdutos, categories }) {
+
+    const imageDefault = listProdutos.variations[0].image
+    const [image, setImage] = useState(imageDefault);
+
+
+    const text = listProdutos.custom_fields.cor_texto
+    const bg = listProdutos.custom_fields.cor_de_fundo
 
     return <>
-        <MyMenu />
-        <div className={`grid justify-center items-center mt-36 text-[${listProdutos.custom_fields.cor_de_fundo}]`}>
-            <div>
-                <h1 className={`text-8xl lg:text-[135px] font-Beastly text-[${listProdutos.custom_fields.cor_texto}]`}>{listProdutos.name}</h1>
-                <div className={style.grid}>
-                    <div>
-                        {listProdutos.variations.map(produto =>
-                            <div key={produto.id}>
-                                <Image
-                                    src={produto.image}
-                                    alt="produto"
-                                    width={500}
-                                    height={500}
-                                    className={style.image}
-                                />
-                                <span
-                                    className={style.btVariation}
-                                    onClick={() => setImage(produto.image)}
-                                    key={produto.id}
-                                >
-                                    {produto.name}
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                    <div>
-                        <span className={`text-4xl lg:text-6xl font-TTHoves font-normal uppercase text-[${listProdutos.custom_fields.cor_texto}]`}>{listProdutos.custom_fields.subtitulo}</span>
-                        <div className='font-TTHoves' dangerouslySetInnerHTML={{ __html: listProdutos.description.replace(/\\/gi, "").replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>") }} />
-                        {listProdutos.custom_fields.adubo == 'Sim' &&
-                            <Image
-                                src={listProdutos.custom_fields.imagem_dos_status}
-    useEffect(() => {
-        document.title = listProdutos.name
-    }, []);
-
-    return <>
-        <MyMenu />
-        <div className={style.container}>
-            <h1 className={style.title}>{listProdutos.name}</h1>
-            <div className={style.grid}>
+        <MyMenu categories={categories} colorTheme={text} colorFont={bg} />
+        <div
+            className="px-[70px] pt-[20px] pb-[40px]"
+            style={{
+                backgroundColor: bg
+            }}
+        >
+            <h1
+                className="text-6xl lg:text-[200px] font-Beastly block pt-16"
+                style={{
+                    color: text
+                }}
+            >
+                {listProdutos.name}
+            </h1>
+            <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div>
-                    {/* <Image
+                    <Image
                         src={image}
                         alt="produto"
                         width={500}
                         height={500}
                         className={style.image}
-                    /> */}
-                    {listProdutos.variations.map(produto => <>
-                        <span
-                            className={style.btVariation}
-                            onClick={() => setImage(produto.image)}
-                            key={produto.id}
-                        >
-                            {produto.name}
-                        </span>
-                        {/* {produto.meta_data[6].value == 'Sim' &&
-                            < Image
-                                src={produto.imagem_dos_status}
+                    />
+                    <div className="flex gap-5">
+
+                    {listProdutos.variations.map(produto =>
+                        <div key={produto.id}>
+                            <Image
+                                src={produto.image}
                                 alt="produto"
-                                width={100}
-                                height={100}
-                                className={style.image}
+                                width={1}
+                                height={1}
+                                style={{
+                                    display: "none !important"
+                                }}
+
                             />
-                        }
-                        <a className={style.btn}> ONDE COMPRAR </a>
+                            <span
+                                className={style.btVariation}
+                                onClick={() => setImage(produto.image)}
+                                key={produto.id}
+                            >
+                                {produto.name}
+                            </span>
+                        </div>
+                    )}
                     </div>
-                        } */}
-                    </>)}
                 </div>
                 <div>
-                    <div dangerouslySetInnerHTML={{ __html: listProdutos.description }} />
+                    <span className={`text-4xl lg:text-6xl font-TTHoves font-normal uppercase text-[${listProdutos.custom_fields.cor_texto}]`}>{listProdutos.custom_fields.subtitulo}</span>
+                    <div className='font-TTHoves' dangerouslySetInnerHTML={{ __html: listProdutos.description.replace(/\\/gi, "").replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>") }} />
+                    {listProdutos.custom_fields.adubo == 'Sim' &&
+                        < Image
+                            src={listProdutos.custom_fields.imagem_dos_status}
+                            alt="produto"
+                            width={100}
+                            height={100}
+                            className={style.image}
+                        />
+                    }
                     <a className={style.btn}> ONDE COMPRAR </a>
                 </div>
             </div>
         </div>
-        <Footer />
+        <Footer corText={bg} corBg={text} />
     </>
 }
 
@@ -107,10 +100,14 @@ export async function getStaticProps({ params }) {
     let reqProdutos = await fetch(`${process.env.API_URL}/products?slug=${params.slug}`);
     let listProdutos = await reqProdutos.json();
 
+    let reqAllCats = await fetch(`${process.env.API_URL}/categories`)
+    let allCats = await reqAllCats.json();
+
     return {
         props: {
             listProdutos,
-            slug: params.slug
+            slug: params.slug,
+            categories: allCats
         },
         revalidate: 10
     }
