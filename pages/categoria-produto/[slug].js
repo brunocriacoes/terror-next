@@ -17,10 +17,12 @@ export default function Categoria({ newcat, allCats }) {
 export async function getStaticPaths() {
     let reqCategories = await fetch(`${process.env.API_URL}/categories`);
     let categories = await reqCategories.json();
+   
 
     const paths = categories.map( category => {
         return { params: { slug: category.slug } }
     } )
+
 
     return {
         paths,

@@ -6,12 +6,18 @@ import style from "./style.module.css"
 
 export default function ProdutoSingle({ listProdutos, categories }) {
 
-    const imageDefault = listProdutos.variations[0].image
+    const imageDefault = listProdutos.variations[0]?.image || null
     const [image, setImage] = useState(imageDefault);
-
 
     const text = listProdutos.custom_fields.cor_texto
     const bg = listProdutos.custom_fields.cor_de_fundo
+
+    let hr =  `<hr style="border-color: ${text}; margin: 20px 0; display:block;" />`    
+
+    let content = listProdutos.description
+    content = content.replace(/\\/gi, "")
+    content = content.replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>")
+    content = content.replace(/\<hr\s\/\>/g, hr)    
 
     return <>
         <MyMenu categories={categories} colorTheme={text} colorFont={bg} />
@@ -22,7 +28,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
             }}
         >
             <h1
-                className="text-6xl lg:text-[200px] font-Beastly block pt-16"
+                className="text-6xl lg:text-[200px] font-Beastly block pt-16 mb-7"
                 style={{
                     color: text
                 }}
@@ -30,42 +36,55 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                 {listProdutos.name}
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div>
+                <div>{image && 
                     <Image
                         src={image}
                         alt="produto"
                         width={500}
                         height={500}
                         className={style.image}
-                    />
+                    />}
                     <div className="flex gap-5">
 
-                    {listProdutos.variations.map(produto =>
-                        <div key={produto.id}>
-                            <Image
-                                src={produto.image}
-                                alt="produto"
-                                width={1}
-                                height={1}
-                                style={{
-                                    display: "none !important"
-                                }}
+                        {listProdutos.variations.map(produto =>
+                            <div key={produto.id}>
+                                <Image
+                                    src={produto.image}
+                                    alt="produto"
+                                    width={1}
+                                    height={1}
+                                    style={{
+                                        display: "none !important"
+                                    }}
 
-                            />
-                            <span
-                                className={style.btVariation}
-                                onClick={() => setImage(produto.image)}
-                                key={produto.id}
-                            >
-                                {produto.name}
-                            </span>
-                        </div>
-                    )}
+                                />
+                                <span
+                                    className={style.btVariation}
+                                    onClick={() => setImage(produto.image)}
+                                    key={produto.id}
+                                >
+                                    {produto.name}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div>
-                    <span className={`text-4xl lg:text-6xl font-TTHoves font-normal uppercase text-[${listProdutos.custom_fields.cor_texto}]`}>{listProdutos.custom_fields.subtitulo}</span>
-                    <div className='font-TTHoves' dangerouslySetInnerHTML={{ __html: listProdutos.description.replace(/\\/gi, "").replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>") }} />
+                    <span
+                        className="text-4xl lg:text-6xl font-TTHoves font-normal uppercase  block"
+                        style={{
+                            color: text
+                        }}
+                    >
+                        {listProdutos.custom_fields.subtitulo}
+                    </span>
+                    <div 
+                    className='font-TTHoves' 
+                    dangerouslySetInnerHTML={{ __html: content }} 
+                    style={{
+                        color: text
+                    }}
+                    />
                     {listProdutos.custom_fields.adubo == 'Sim' &&
                         < Image
                             src={listProdutos.custom_fields.imagem_dos_status}

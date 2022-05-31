@@ -87,6 +87,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
     function LinkMenuMobile({ href, text, sub, color }) {
         return <div
             className={'uppercase font-Beastly  text-3xl border-solid border-b-2 py-4'}
+            key={Math.random()}
             style={{
                 color,
                 borderColor: color,
@@ -99,7 +100,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
                 </a>
             </Link>
             <div className={`${isOpenSub && 'hidden'}`}>
-                {sub && sub.map(c => < ><LinkSubMenuMobile key={c.slug} {...c} /></>)}
+                {sub && sub.map(c => <div key={Math.random()}><LinkSubMenuMobile   {...c} /></div>)}
             </div>
         </div>
     }
@@ -118,10 +119,10 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             >
                 <Terror color={colorFont} />
             </div>
-            <LinkMenuMobile color={colorFont} href="/" text="HOME" />
-            <LinkMenuMobile color={colorFont} href="" text="Produtos" sub={listCategories} />
-            <LinkMenuMobile color={colorFont} href="/contato" text="Contato" />
-            <LinkMenuMobile color={colorFont} href="/onde-comprar" text="Onde Comprar" />
+            <LinkMenuMobile key="home" color={colorFont} href="/" text="HOME" />
+            <LinkMenuMobile key="produtos" color={colorFont} href="#" text="Produtos" sub={listCategories} />
+            <LinkMenuMobile key="contato" color={colorFont} href="/contato" text="Contato" />
+            <LinkMenuMobile key="onde-comprar" color={colorFont} href="/onde-comprar" text="Onde Comprar" />
         </motion.div>
         <motion.div
             initial="hidden"

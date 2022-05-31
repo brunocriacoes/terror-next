@@ -8,7 +8,6 @@ export default function ContatoPage({ allCats }) {
     return (
         <>
             <MyMenu categories={allCats}  colorTheme="#520091" colorFont="#C0E0CC"/>
-
             <Contato corText="#520091" corBg="#C0E0CC" pTop="50px" />
             <Footer corText="#C0E0CC" corBg="#520091" />
         </>
