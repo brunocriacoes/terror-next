@@ -3,7 +3,6 @@ import { MyMenu, Footer } from "../../components/index"
 import Image from "next/image"
 import Link from 'next/link'
 
-import style from "./style.module.css"
 
 export default function ProdutoSingle({ listProdutos, categories }) {
 
@@ -13,7 +12,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
     const text = listProdutos.custom_fields.cor_texto
     const bg = listProdutos.custom_fields.cor_de_fundo
 
-    let hr = `<hr style="border-color: ${text}; margin: 20px 0; display:block;" />`
+    let hr = `<hr style="border-color: ${text}; margin-top: 20px; display:block;" />`
 
     let content = listProdutos.description
     content = content.replace(/\\/gi, "")
@@ -43,7 +42,6 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                         alt="produto"
                         width={500}
                         height={500}
-                        className={style.image}
                     />}
                     <div className="flex gap-5">
 
@@ -65,6 +63,8 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                         style={{
                                             backgroundColor: text,
                                             color: bg,
+                                            opacity: produto.image == image ? 1 : .3,
+                                            filter:  produto.image != image ? "grayscale(100)" : ""
                                         }}
                                         onClick={() => setImage(produto.image)}
                                         key={produto.id}
@@ -78,7 +78,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                 </div>
                 <div>
                     <span
-                        className="text-4xl lg:text-6xl font-TTHoves font-normal uppercase  block"
+                        className="text-4xl lg:text-6xl font-TTHoves font-normal uppercase  block mb-5"
                         style={{
                             color: text
                         }}

@@ -7,7 +7,7 @@ export default function HomePage({ allCats }) {
     }, []);
     return (
         <>
-            <MyMenu categories={allCats} />
+            <MyMenu categories={allCats} colorFont="#225439" colorTheme="#EDDFD0" />
             <BannerHome />
             <Categories categories={allCats} />
             <Lets />
@@ -20,7 +20,6 @@ export default function HomePage({ allCats }) {
 export async function getStaticProps(context) {
     let reqAllCats = await fetch(`${process.env.API_URL}/categories`)
     let allCats = await reqAllCats.json();
-
     return {
         props: {
             allCats
