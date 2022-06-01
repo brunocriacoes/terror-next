@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { MyMenu, Footer } from "../../components/index"
 import Image from "next/image"
+import Link from 'next/link'
 
 import style from "./style.module.css"
 
@@ -12,17 +13,17 @@ export default function ProdutoSingle({ listProdutos, categories }) {
     const text = listProdutos.custom_fields.cor_texto
     const bg = listProdutos.custom_fields.cor_de_fundo
 
-    let hr =  `<hr style="border-color: ${text}; margin: 20px 0; display:block;" />`    
+    let hr = `<hr style="border-color: ${text}; margin: 20px 0; display:block;" />`
 
     let content = listProdutos.description
     content = content.replace(/\\/gi, "")
     content = content.replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>")
-    content = content.replace(/\<hr\s\/\>/g, hr)    
+    content = content.replace(/\<hr\s\/\>/g, hr)
 
     return <>
         <MyMenu categories={categories} colorTheme={text} colorFont={bg} />
         <div
-            className="px-[70px] pt-[20px] pb-[40px]"
+            className="pt-[50px] px-[20px] lg:px-[70px] lg:pt-[20px] pb-[40px]"
             style={{
                 backgroundColor: bg
             }}
@@ -36,7 +37,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                 {listProdutos.name}
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div>{image && 
+                <div>{image &&
                     <Image
                         src={image}
                         alt="produto"
@@ -58,13 +59,19 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                     }}
 
                                 />
-                                <span
-                                    className={style.btVariation}
-                                    onClick={() => setImage(produto.image)}
-                                    key={produto.id}
-                                >
-                                    {produto.name}
-                                </span>
+                                {listProdutos.variations.length > 1 &&
+                                    <button
+                                        className="font-TTHoves mb-6 uppercase text-[12px] lg:text-2xl block text-center rounded p-4 mt-5 font-bold hover:brightness-125"
+                                        style={{
+                                            backgroundColor: text,
+                                            color: bg,
+                                        }}
+                                        onClick={() => setImage(produto.image)}
+                                        key={produto.id}
+                                    >
+                                        {produto.name || 'Sem Nome'}
+                                    </button>
+                                }
                             </div>
                         )}
                     </div>
@@ -78,23 +85,44 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                     >
                         {listProdutos.custom_fields.subtitulo}
                     </span>
-                    <div 
-                    className='font-TTHoves' 
-                    dangerouslySetInnerHTML={{ __html: content }} 
-                    style={{
-                        color: text
-                    }}
+                    <div
+                        className='font-TTHoves'
+                        dangerouslySetInnerHTML={{ __html: content }}
+                        style={{
+                            color: text
+                        }}
                     />
                     {listProdutos.custom_fields.adubo == 'Sim' &&
-                        < Image
-                            src={listProdutos.custom_fields.imagem_dos_status}
-                            alt="produto"
-                            width={100}
-                            height={100}
-                            className={style.image}
-                        />
+                        <div 
+                            className="relative w-full h-[85px] lg:w-1/3 lg:h-[60px] mt-2"
+                            style={{
+                                backgroundColor: text,
+                                mixBlendMode: "multiply"
+                            }}
+                            >
+                            <Image
+                                style={{
+                                    filter: "contrast(200%) grayscale(100%) ",
+                                    mixBlendMode: "screen"
+                                }}
+                                src={listProdutos.custom_fields.imagem_dos_status}
+                                alt="produto"
+                                layout='fill'
+                                objectFit='contain'
+                            />
+                        </div>
                     }
-                    <a className={style.btn}> ONDE COMPRAR </a>
+                    <Link href="/onde-comprar">
+                        <a
+                            className="font-TTHoves uppercase text-2xl block text-center rounded py-4 mt-5 font-bold hover:brightness-125"
+                            style={{
+                                backgroundColor: text,
+                                color: bg,
+                            }}
+                        >
+                            ONDE COMPRAR
+                        </a>
+                    </Link>
                 </div>
             </div>
         </div>

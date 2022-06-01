@@ -85,7 +85,7 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
 
     return <>
         <nav
-            className="fixed top-0 left-0 right-0 grid grid-cols-1 w-full h-24 z-10"
+            className="absolute lg:fixed top-0 left-0 right-0 grid grid-cols-1 w-full h-24 z-10"
             style={{
                 // background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${backgroundTransparacy})`,
                 padding: `${padding}px 0px`,
