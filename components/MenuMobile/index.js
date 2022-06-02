@@ -165,7 +165,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             className="lg:hidden z-30 fixed bottom-5 left-5  rounded-full p-7"
         > </div>
         <div
-            className={'lg:hidden z-10 fixed bottom-5 left-5  rounded-full p-7'}
+            className="lg:hidden z-10 fixed bottom-5 left-5  rounded-full p-7"
             style={{
                 backgroundColor: colorTheme
             }}

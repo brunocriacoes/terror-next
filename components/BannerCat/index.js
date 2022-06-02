@@ -12,7 +12,7 @@ export default function BannerCat({ img, name, colorTheme, colorFont }) {
                 className="flex items-center justify-items-start  lg:h-[60vh] w-full pt-28"
             >
                 <h1
-                    className="block lg:px-[70px] text-6xl lg:text-[160px] text-Light-Orange font-Beastly font-normal"
+                    className="block px-[10px] lg:px-[70px] text-6xl lg:text-[160px] text-Light-Orange font-Beastly font-normal"
                     style={{
                         color: colorTheme || '#EDDFD0'
                     }}

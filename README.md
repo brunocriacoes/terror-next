@@ -43,3 +43,8 @@ https://terrov2.vercel.app
 ## Slide DOC
 
 https://github.com/YIZHUANG/react-multi-carousel
+
+
+### galeria
+
+https://terro.app.br/wp-json/api/v1/products?slug=pazinha

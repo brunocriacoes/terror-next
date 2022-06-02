@@ -59,11 +59,11 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                 />
                                 {listProdutos.variations.length > 1 &&
                                     <button
-                                        className="font-TTHoves mb-6 uppercase text-[12px] lg:text-2xl block text-center rounded p-4 mt-5 font-bold hover:brightness-125"
+                                        className="font-TTHoves mb-6 uppercase opacity-[var(--o,.5)] hover:opacity-60 text-[12px] lg:text-2xl block text-center rounded p-4 mt-5 font-bold hover:brightness-125"
                                         style={{
                                             backgroundColor: text,
                                             color: bg,
-                                            opacity: produto.image == image ? 1 : .3,
+                                            "--o": produto.image == image ? 1 : .3 ,
                                             filter:  produto.image != image ? "grayscale(100)" : ""
                                         }}
                                         onClick={() => setImage(produto.image)}
