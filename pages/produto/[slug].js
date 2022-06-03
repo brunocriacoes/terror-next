@@ -57,14 +57,35 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                     }}
 
                                 />
+                                {listProdutos.variations.length == 1 && <div
+                                    className="flex gap-4"
+                                >
+                                    {Array(4).fill('').map(_ => <div 
+                                        className="rounded border-2 cursor-pointer opacity-70 hover:opacity-100 mb-6"
+                                        style={{
+                                            borderColor: text
+                                        }}
+                                    >
+                                         <Image
+                                    src={produto.image}
+                                    alt="produto"
+                                    width="100%"
+                                    height="100%"
+                                    style={{
+                                        display: "none !important"
+                                    }}
+
+                                />
+                                    </div>)}
+                                </div>}
                                 {listProdutos.variations.length > 1 &&
                                     <button
                                         className="font-TTHoves mb-6 uppercase opacity-[var(--o,.5)] hover:opacity-60 text-[12px] lg:text-2xl block text-center rounded p-4 mt-5 font-bold hover:brightness-125"
                                         style={{
                                             backgroundColor: text,
                                             color: bg,
-                                            "--o": produto.image == image ? 1 : .3 ,
-                                            filter:  produto.image != image ? "grayscale(100)" : ""
+                                            "--o": produto.image == image ? 1 : .3,
+                                            filter: produto.image != image ? "grayscale(100)" : ""
                                         }}
                                         onClick={() => setImage(produto.image)}
                                         key={produto.id}
@@ -93,13 +114,13 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                         }}
                     />
                     {listProdutos.custom_fields.adubo == 'Sim' &&
-                        <div 
+                        <div
                             className="relative w-full h-[85px] lg:w-1/3 lg:h-[60px] mt-2"
                             style={{
                                 backgroundColor: text,
                                 mixBlendMode: "multiply"
                             }}
-                            >
+                        >
                             <Image
                                 style={{
                                     filter: "contrast(200%) grayscale(100%) ",
