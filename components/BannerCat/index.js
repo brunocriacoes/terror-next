@@ -23,5 +23,4 @@ export default function BannerCat({ img, name, colorTheme, colorFont }) {
             <IconProdTop color={colorTheme||'#EDDFD0'} />
         </div>
     </>
-
 }

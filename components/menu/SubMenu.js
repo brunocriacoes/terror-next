@@ -3,7 +3,7 @@ import Link from 'next/link';
 function SubMenu({categories, bgColor, color}) {
     return (
         <div 
-        className="fixed top-20 p-5 rounded-lg"
+        className="fixed top-20 p-5 rounded-lg drop-shadow-lg"
         style={{
             backgroundColor: color,
             color: bgColor

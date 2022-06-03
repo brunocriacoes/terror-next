@@ -40,7 +40,7 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
     const subMenuAnimate = {
         enter: {
             opacity: 1,
-            rotateX: 0,
+            rotateX:  0,
             transition: {
                 duration: 0.5
             },
@@ -48,7 +48,7 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
         },
         exit: {
             opacity: 0,
-            rotateX: -15,
+            rotateX: 0,
             transition: {
                 duration: 0.5,
                 delay: 0.3
@@ -110,23 +110,22 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
 
                 <div className="col-span-3 hidden w-full md:block md:w-auto z-10" id="mobile-menu">
                     <div className="grid grid-cols-4 gap-4 items-center w-full">
-                        <div className="">
+                        <div>
                             <LinkMenu href="/" text="Home" />
                         </div>
-                        <div className="">
-                            <motion.div
-                                className=''
-                                onHoverStart={toggleHoverMenu}
-                                onHoverEnd={toggleHoverMenu}
-                            >
-                                {/* <LinkMenu href="/categoria-produto" text="Categorias" /> */}
+                        
+                        <div
+                            onMouseOver={_ => toggleHover(true)}
+                            onMouseOut={_ => toggleHover(false)}
+                        >
+                            <motion.div >
                                 <span
                                     className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'
                                     style={{
                                         color: colorTheme
                                     }}
                                 >
-                                    Categorias
+                                    Categorias 
                                 </span>
                                 <motion.div
                                     initial="exit"
@@ -137,10 +136,10 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
                                 </motion.div>
                             </motion.div>
                         </div>
-                        <div className="">
+                        <div>
                             <LinkMenu href="/contato" text="Contato" />
                         </div>
-                        <div className="">
+                        <div>
                             <LinkMenu href="/onde-comprar" text="Onde Comprar" />
                         </div>
                     </div>
