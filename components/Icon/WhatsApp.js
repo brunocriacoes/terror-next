@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function WhatsApp({ color }) {
-    return <Link href="https://web.whatsapp.com">
+    return <Link href="https://api.whatsapp.com/send?phone=5511949181006">
         <a target="_blank" rel="noreferrer">
             <svg
                 viewBox="0 0 30 30"

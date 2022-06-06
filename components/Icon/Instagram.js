@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function Instagram({ color }) {
-    return <Link href="https://www.instagram.com">
+    return <Link href="https://www.instagram.com/terro_solovivo/">
         <a target="_blank" rel="noreferrer">
             <svg
                 viewBox="0 0 31 30"

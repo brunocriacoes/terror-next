@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { MyMenu, Footer } from "../components/index"
+import Link from 'next/link'
 
 export default function OndeComprar({ allCats }) {
     const [uf, setUf] = useState('SP')
     useEffect(() => {
         document.title = `Onde Comprar`
     }, []);
+
+    const lojas = [
+        {
+            text: "Mercado Shops",
+            href: "https://terro.mercadoshops.com.br/",
+        },
+        {
+            text: "Smart Shop Brasil",
+            href: "https://www.smartsbrasil.com.br/",
+        },
+        {
+            text: "Diboa Tabacaria",
+            href: "https://www.diboatabacaria.com.br/",
+        },
+        {
+            text: "Grama Cultivo Eficiente",
+            href: "https://www.gramacultivo.com.br/",
+        },
+    ]
+
     return (
         <>
             <MyMenu categories={allCats} colorFont="#520091" colorTheme="#C0E0CC" />
             <div className="pt-40 bg-Purple px-5 lg:px-20">
                 <h1 className="font-Beastly text-Light-Green text-[60px] leading-[50px] lg:text-[240px] font-normal lg:leading-[220px] mb-5">
-                    onde <br /> 
+                    onde <br />
                     comprar
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 items-center mt-7">
@@ -88,10 +109,16 @@ export default function OndeComprar({ allCats }) {
                 }
                 <h2 className="font-Beastly text-Light-Green text-5xl lg:text-7xl mb-12">lojas online</h2>
                 <div className="grid grid-cols-1 lg:grid-cols-2 pb-12 gap-16">
-                    <a href="" className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">Mercado Shops</a>
-                    <a href="" className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">Smart Shop Brasil</a>
-                    <a href="" className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">Diboa Tabacaria</a>
-                    <a href="" className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">Grama Cultivo Eficiente</a>
+                    {lojas.map(loja => <Link href={loja.href}>
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">
+                            Mercado Shops
+                        </a>
+                    </Link>
+
+                    )}
                 </div>
             </div>
 

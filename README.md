@@ -48,3 +48,8 @@ https://github.com/YIZHUANG/react-multi-carousel
 ### galeria
 
 https://terro.app.br/wp-json/api/v1/products?slug=pazinha
+
+
+### versão online
+
+https://terro.agr.br

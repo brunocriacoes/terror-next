@@ -117,14 +117,14 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                         <div
                             className="relative w-full h-[85px] lg:w-1/3 lg:h-[60px] mt-2"
                             style={{
-                                backgroundColor: text,
-                                mixBlendMode: "multiply"
+                                // backgroundColor: text,
+                                // mixBlendMode: "multiply"
                             }}
                         >
                             <Image
                                 style={{
-                                    filter: "contrast(200%) grayscale(100%) ",
-                                    mixBlendMode: "screen"
+                                    // filter: "contrast(200%) grayscale(100%) ",
+                                    // mixBlendMode: "screen"
                                 }}
                                 src={listProdutos.custom_fields.imagem_dos_status}
                                 alt="produto"

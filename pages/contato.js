@@ -7,8 +7,15 @@ export default function ContatoPage({ allCats }) {
     }, []);
     return (
         <>
-            <MyMenu categories={allCats}  colorTheme="#520091" colorFont="#C0E0CC"/>
-            <Contato corText="#520091" corBg="#C0E0CC" pTop="50px" />
+            <MyMenu categories={allCats} colorTheme="#520091" colorFont="#C0E0CC" />
+            <div className='min-h-[var(--min-altura)]'
+            style={{
+                backgroundColor: "#C0E0CC",
+                "--min-altura": "calc( 100vh - 270px )"
+            }}
+            >
+                <Contato corText="#520091" corBg="#C0E0CC" pTop="50px" />                
+            </div>
             <Footer corText="#C0E0CC" corBg="#520091" />
         </>
     )

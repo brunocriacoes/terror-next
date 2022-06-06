@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function Facebook({ color }) {
-    return <Link href="https://www.facebook.com">
+    return <Link href="https://www.facebook.com/terrosolovivo">
         <a target="_blank" rel="noreferrer">
             <svg
                 viewBox="0 0 31 30"
