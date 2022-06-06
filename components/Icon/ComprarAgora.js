@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function ComprarAgora({ color, size, className }) {
     size = size || 100;
-    return <Link href="./onde-comprar">
+    return <Link href="/onde-comprar">
         <a>
             <svg
                 width={size}
