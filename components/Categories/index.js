@@ -81,7 +81,7 @@ export default function Categories({ categories, colorTheme, colorFont }) {
                 >
                     {categories.map((cat, i) =>
                         <div className="group relative mx-4" key={cat.slug}>
-                            <Link href={`categoria-produto/${cat.slug}`}>
+                            <Link href={`/categoria-produto/${cat.slug}`}>
                                 <a className="w-full min-h-80 bg-gray-100 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80">
                                     <div className="w-full min-h-full rounded-md overflow-hidden group-hover:opacity-75 lg:h-80">
                                         <Image
