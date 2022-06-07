@@ -31,14 +31,14 @@ export default function Categories({ categories, colorTheme, colorFont }) {
         }
     };
 
-    function CustomLeftArrow(props) {
+    function CustomLeftArrow({carouselState, children,...props}) {
         return <button type="button" {...props}
             className="absolute left-0 -mt-12  z-0 text-white hover:bg-black rounded-full"
         >
             <NextPrev color="#EDDFD0" />
         </button>
     }
-    function CustomRightArrow(props) {
+    function CustomRightArrow({carouselState, children,...props}) {
         return <button type="button" {...props}
             className="absolute right-0 -mt-12  z-0 text-white rotate-180 hover:bg-black rounded-full"
         >
