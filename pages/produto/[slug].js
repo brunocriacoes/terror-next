@@ -60,7 +60,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                 {listProdutos.variations.length == 1 && <div
                                     className="flex gap-4"
                                 >
-                                    {Array(4).fill('').map(_ => <div 
+                                    {Array(4).fill('').map((_, i) => <div  key={`galery_item_${i}`}
                                         className="rounded border-2 cursor-pointer opacity-70 hover:opacity-100 mb-6"
                                         style={{
                                             borderColor: text
