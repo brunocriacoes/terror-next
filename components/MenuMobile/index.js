@@ -3,6 +3,7 @@ import Terror from "../Icon/Terror.js"
 import { motion } from "framer-motion"
 import react, { useState } from "react"
 import Link from 'next/link'
+import SetaMenu from "../Icon/SetaMenu.js"
 
 export default function MenuMobile({ colorTheme, colorFont, categories }) {
 
@@ -96,7 +97,16 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             <Link href={href}>
                 <a className="flex justify-between" >
                     {text}
-                    {sub && <span onClick={toggleMenuSub}> * </span>}
+                    {sub && <span 
+                    className="w-[22px] h-[22px] mt-5"
+                    onClick={toggleMenuSub}
+                    style={{
+                        transform: !isOpenSub ? "rotate(0deg)" :  "rotate(90deg)",
+                        transition: "all .3s ease-in-out",
+                    }}
+                    >                     
+                    <SetaMenu color={color} />
+                    </span>}
                 </a>
             </Link>
             <div className={`${isOpenSub && 'hidden'}`}>
