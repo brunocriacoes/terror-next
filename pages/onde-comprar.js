@@ -109,12 +109,12 @@ export default function OndeComprar({ allCats }) {
                 }
                 <h2 className="font-Beastly text-Light-Green text-5xl lg:text-7xl mb-12">lojas online</h2>
                 <div className="grid grid-cols-1 lg:grid-cols-2 pb-12 gap-16">
-                    {lojas.map(loja => <Link href={loja.href}>
+                    {lojas.map(loja => <Link href={loja.href} key={loja.text}>
                         <a
                             target="_blank"
                             rel="noreferrer"
                             className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">
-                            Mercado Shops
+                            {loja.text}
                         </a>
                     </Link>
 
