@@ -11,7 +11,7 @@ export default function Contato({ corText, corBg, pTop }) {
 
     return <>
         <div
-            className="px-2 px-5 lg:px-[70px] lg:min-h-[58vh]"
+            className="px-2 px-5 lg:px-[70px] lg:min-h-[58vh] "
             style={{
                 backgroundColor: bg,
                 color: text,

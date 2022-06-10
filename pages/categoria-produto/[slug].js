@@ -8,7 +8,7 @@ export default function Categoria({ newcat, allCats }) {
     const text = newcat.custom_fields.cor_fonte || '#225439'
     const bg = newcat.custom_fields.cor_tema||'#EDDFD0'
     return <>
-        <MyMenu categories={allCats} colorTheme={bg} colorFont={text} />
+        <MyMenu categories={allCats} colorTheme={bg} colorFont={text}/>
         <BannerCat img={newcat.image} name={newcat.name} colorTheme={bg} colorFont={text}  />
         <ListProd prods={newcat.products} colorTheme={bg} colorFont={text} />
         <Categories categories={allCats} colorTheme={bg} colorFont={text} />

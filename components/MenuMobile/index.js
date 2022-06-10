@@ -7,6 +7,8 @@ import SetaMenu from "../Icon/SetaMenu.js"
 
 export default function MenuMobile({ colorTheme, colorFont, categories }) {
 
+    
+
     const [isOpen, setIsOpen] = useState(false)
 
     function toggleMenu() {
@@ -138,7 +140,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={variants}
-            className="lg:hidden z-10 fixed bottom-5 left-5 bg-Dark-Green rounded-full p-7"
+            className="lg:hidden z-10 fixed bottom-20 left-5 bg-Dark-Green rounded-full p-7"
             style={{
                 backgroundColor: colorTheme
             }}
@@ -147,7 +149,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={left}
-            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-14'} -transition-all left-8`}
+            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-[105px]' : 'bottom-[116px]'} -transition-all left-8`}
             style={{
                 backgroundColor: colorFont
             }}
@@ -156,7 +158,7 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={left}
-            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-11'} -transition-all left-8`}
+            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-[105px]' : 'bottom-[105px]'} -transition-all left-8`}
             style={{
                 backgroundColor: colorFont
             }}
@@ -165,19 +167,20 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
             variants={right}
-            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-11' : 'bottom-8'} -transition-all left-8`}
+            className={`lg:hidden z-20 w-8 bg-Dark-Green h-1 fixed ${isOpen ? 'bottom-[105px]' : 'bottom-[94px]'} -transition-all left-8`}
             style={{
                 backgroundColor: colorFont
             }}
         ></motion.div>
         <div
             onClick={toggleMenu}
-            className="lg:hidden z-30 fixed bottom-5 left-5  rounded-full p-7"
+            className="lg:hidden z-30 fixed bottom-20 left-5  rounded-full p-7"
         > </div>
         <div
-            className="lg:hidden z-10 fixed bottom-5 left-5  rounded-full p-7"
+            className="lg:hidden z-10 fixed bottom-20 left-5  rounded-full p-7 shadow-lg"
             style={{
-                backgroundColor: colorTheme
+                backgroundColor: colorTheme,
+
             }}
         > </div>
     </>

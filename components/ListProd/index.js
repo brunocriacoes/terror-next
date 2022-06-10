@@ -38,13 +38,18 @@ export default function ListProd({ prods, colorTheme, colorFont }) {
             >
                 {prods.map(p =>
                     <div key={p.slug} className={style.item}>
-                        <Image
-                            src={p.image}
-                            onError={onError}
-                            alt={p.name}
-                            height={300}
-                            width={300}
-                        />
+                        <div
+                            className="relative w-full h-[250px]"
+                        >
+
+                            <Image
+                                src={p.image}
+                                onError={onError}
+                                alt={p.name}
+                                layout='fill'
+                                objectFit='contain'
+                            />
+                        </div>
                         <strong
                             className="font-Beastly font-normal text-xl lg:text-6xl"
                             style={{
@@ -63,7 +68,7 @@ export default function ListProd({ prods, colorTheme, colorFont }) {
                         </span>
                         <Link href={'/produto/' + p.slug}>
                             <a
-                                className="mt-5 border-2 text-[color:var(--color)] hover:text-[color:var(--bg)] hover:bg-[color:var(--color)] rounded font-TTHovesBold text-xl py-2 mb-10 uppercase "
+                                className=" h-[45px] w-[270px] mx-auto mt-5 border-2 text-[color:var(--color)] hover:text-[color:var(--bg)] hover:bg-[color:var(--color)] rounded font-TTHovesBold text-xl py-2 mb-10 uppercase "
                                 style={{
                                     borderColor: colorFont,
                                     "--color": colorFont,

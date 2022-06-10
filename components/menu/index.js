@@ -40,7 +40,7 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
     const subMenuAnimate = {
         enter: {
             opacity: 1,
-            rotateX:  0,
+            rotateX: 0,
             transition: {
                 duration: 0.5
             },
@@ -110,38 +110,31 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
 
                 <div className="col-span-3 hidden w-full md:block md:w-auto z-10" id="mobile-menu">
                     <div className="grid grid-cols-4 gap-4 items-center w-full">
-                        <div>
-                            <LinkMenu href="/" text="Home" />
-                        </div>
-                        
-                        <div
+                        <LinkMenu href="/" text="Home" />
+                        <motion.div
                             onMouseOver={_ => toggleHover(true)}
                             onMouseOut={_ => toggleHover(false)}
+                            animate={{ x: -25 }}
+
                         >
-                            <motion.div >
-                                <span
-                                    className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'
-                                    style={{
-                                        color: colorTheme
-                                    }}
-                                >
-                                    Categorias 
-                                </span>
-                                <motion.div
-                                    initial="exit"
-                                    animate={isHover ? "enter" : "exit"}
-                                    variants={subMenuAnimate}
-                                >
-                                    <SubMenu categories={categories} bgColor={colorTheme} color={colorFont} />
-                                </motion.div>
+                            <span
+                                className='font-TTHovesBold text-xl block py-2 pr-4 pl-3 text-Light-Orange md:p-0 cursor-pointer'
+                                style={{
+                                    color: colorTheme,
+                                }}
+                            >
+                                Categorias
+                            </span>
+                            <motion.div
+                                initial="exit"
+                                animate={isHover ? "enter" : "exit"}
+                                variants={subMenuAnimate}
+                            >
+                                <SubMenu categories={categories} bgColor={colorTheme} color={colorFont} />
                             </motion.div>
-                        </div>
-                        <div>
-                            <LinkMenu href="/contato" text="Contato" />
-                        </div>
-                        <div>
-                            <LinkMenu href="/onde-comprar" text="Onde Comprar" />
-                        </div>
+                        </motion.div>
+                        <LinkMenu href="/contato" text="Contato" />
+                        <LinkMenu href="/onde-comprar" text="Onde Comprar" />
                     </div>
                 </div>
             </div>

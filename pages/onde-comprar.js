@@ -113,7 +113,7 @@ export default function OndeComprar({ allCats }) {
                         <a
                             target="_blank"
                             rel="noreferrer"
-                            className="font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[60px]">
+                            className="px-5 lg:px-0 py-4 lg:py-0 font-TTHoves text-Light-Green hover:text-Purple hover:bg-Light-Green text-2xl font-black uppercase rounded border-2 border-solid text-center leading-[40px] lg:leading-[60px]">
                             {loja.text}
                         </a>
                     </Link>

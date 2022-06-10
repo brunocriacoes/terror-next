@@ -19,6 +19,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
     content = content.replace(/(?:\\[rn]|[\r\n]+)+/g, "<br/>")
     content = content.replace(/\<hr\s\/\>/g, hr)
 
+
     return <>
         <MyMenu categories={categories} colorTheme={text} colorFont={bg} />
         <div
@@ -80,7 +81,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                 </div>}
                                 {listProdutos.variations.length > 1 &&
                                     <button
-                                        className="font-TTHoves mb-6 uppercase opacity-[var(--o,.5)] hover:opacity-60 text-[12px] lg:text-2xl block text-center rounded p-4 mt-5 font-bold hover:brightness-125"
+                                        className="font-TTHoves mb-6 uppercase opacity-[var(--o,.5)] hover:opacity-60 text-[12px] lg:text-[25px] lg:w-[175px] block text-center rounded px-4 py-1 mt-5 font-bold hover:brightness-125"
                                         style={{
                                             backgroundColor: text,
                                             color: bg,
@@ -115,7 +116,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                     />
                     {listProdutos.custom_fields.adubo == 'Sim' &&
                         <div
-                            className="relative w-full h-[85px] lg:w-1/3 lg:h-[60px] mt-2"
+                            className="relative w-full h-[85px] lg:w-1/2 lg:h-[100px] mt-2"
                             style={{
                                 // backgroundColor: text,
                                 // mixBlendMode: "multiply"
@@ -133,9 +134,9 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                             />
                         </div>
                     }
-                    <Link href="/onde-comprar">
+                    <Link href="/onde-comprar" passHref>
                         <a
-                            className="font-TTHoves uppercase text-2xl block text-center rounded py-4 mt-5 font-bold hover:brightness-125"
+                            className="fixed left-0 bottom-0 w-full lg:w-auto lg:relative font-TTHoves uppercase text-2xl block text-center lg:rounded py-4 mt-5 font-bold hover:brightness-125"
                             style={{
                                 backgroundColor: text,
                                 color: bg,
