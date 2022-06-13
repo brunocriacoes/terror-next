@@ -8,6 +8,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
 
     const imageDefault = listProdutos.variations[0]?.image || null
     const [image, setImage] = useState(imageDefault);
+    // listProdutos.galley.push(image)
 
     const text = listProdutos.custom_fields.cor_texto
     const bg = listProdutos.custom_fields.cor_de_fundo
@@ -37,13 +38,36 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                 {listProdutos.name}
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div>{image &&
+                <div>{image && <div
+                    className="relative h-[280px] lg:h-[480px]"
+                >
                     <Image
                         src={image}
                         alt="produto"
-                        width={500}
-                        height={500}
-                    />}
+                        layout="fill"
+                        objectFit="contain"
+                    />
+                </div>}
+                    {listProdutos.variations.length == 1 && <div
+                        className="grid grid-cols-3 lg:grid-cols-5 gap-4 w-full pr-[10px] lg:pr-[40px] mt-[40px]"
+                    >
+                        {listProdutos.galley.map((urlPhoto, i) => <div
+                            onClick={() => setImage(urlPhoto)}
+                            key={`galery_item_${i}`}
+                            className="rounded border-2 cursor-pointer opacity-70 hover:opacity-100 mb-6 block relative pb-[80%] "
+                            style={{
+                                borderColor: text
+                            }}
+                        >
+                            <Image
+                                src={urlPhoto}
+                                alt="produto"
+                                layout="fill"
+                                objectFit="contain"
+                            />
+
+                        </div>)}
+                    </div>}
                     <div className="flex gap-5">
 
                         {listProdutos.variations.map(produto =>
@@ -58,27 +82,7 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                                     }}
 
                                 />
-                                {listProdutos.variations.length == 1 && <div
-                                    className="flex gap-4"
-                                >
-                                    {Array(4).fill('').map((_, i) => <div  key={`galery_item_${i}`}
-                                        className="rounded border-2 cursor-pointer opacity-70 hover:opacity-100 mb-6"
-                                        style={{
-                                            borderColor: text
-                                        }}
-                                    >
-                                         <Image
-                                    src={produto.image}
-                                    alt="produto"
-                                    width="100%"
-                                    height="100%"
-                                    style={{
-                                        display: "none !important"
-                                    }}
 
-                                />
-                                    </div>)}
-                                </div>}
                                 {listProdutos.variations.length > 1 &&
                                     <button
                                         className="font-TTHoves mb-6 uppercase opacity-[var(--o,.5)] hover:opacity-60 text-[12px] lg:text-[25px] lg:w-[175px] block text-center rounded px-4 py-1 mt-5 font-bold hover:brightness-125"
@@ -116,22 +120,16 @@ export default function ProdutoSingle({ listProdutos, categories }) {
                     />
                     {listProdutos.custom_fields.adubo == 'Sim' &&
                         <div
-                            className="relative w-full h-[85px] lg:w-1/2 lg:h-[100px] mt-2"
-                            style={{
-                                // backgroundColor: text,
-                                // mixBlendMode: "multiply"
-                            }}
+                            className="relative lg: w-[330px]  my-5"
                         >
                             <Image
-                                style={{
-                                    // filter: "contrast(200%) grayscale(100%) ",
-                                    // mixBlendMode: "screen"
-                                }}
                                 src={listProdutos.custom_fields.imagem_dos_status}
                                 alt="produto"
-                                layout='fill'
-                                objectFit='contain'
+                                layout="responsive"
+                                width={330}
+                                height={100}
                             />
+                            <br />
                         </div>
                     }
                     <Link href="/onde-comprar" passHref>
