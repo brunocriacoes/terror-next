@@ -147,6 +147,9 @@ export default function ProdutoSingle({ listProdutos, categories }) {
             </div>
         </div>
         <Footer corText={bg} corBg={text} />
+        <div style={{
+            background: bg
+        }} className="block h-[50px] lg:h-0" ></div>
     </>
 }
 
