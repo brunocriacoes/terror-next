@@ -100,11 +100,10 @@ export default function MenuMobile({ colorTheme, colorFont, categories }) {
                 <a className="flex justify-between" >
                     {text}
                     {sub && <span 
-                    className="w-[22px] h-[22px] mt-5"
+                    className="w-[22px] h-[22px] mt-[9px] transition-all"
                     onClick={toggleMenuSub}
                     style={{
                         transform: !isOpenSub ? "rotate(0deg)" :  "rotate(90deg)",
-                        transition: "all .3s ease-in-out",
                     }}
                     >                     
                     <SetaMenu color={color} />
