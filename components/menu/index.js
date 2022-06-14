@@ -31,6 +31,9 @@ export default function MyMenu({ categories, colorTheme, colorFont }) {
             setPadding(paddingVar);
             setBoxShadow(boxShadowVar);
         }
+        if( window.scrollY > 800 ) {
+            setBackgroundTransparacy(1);
+        }
     }, [clientWindowHeight]);
 
     const [isHover, toggleHover] = useState(false);
