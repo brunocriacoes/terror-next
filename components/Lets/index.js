@@ -18,7 +18,7 @@ export default function Lets() {
                 </div>
             </div>
             <div className="lg:absolute lg:left-[950px] lg:top-[250px]">
-                <ComprarAgora color="#EDDFD0" size="180" className="w-[100px] lg:w-[180px] ml-5" />
+                <ComprarAgora color="#EDDFD0" size="180" className="w-[100px] lg:w-[180px]" />
             </div>
             <Contato color="#EDDFD0" />
         </div>

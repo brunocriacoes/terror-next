@@ -3,7 +3,12 @@ import Link from 'next/link'
 export default function ComprarAgora({ color, size, className }) {
     size = size || 100;
     return <Link href="/onde-comprar">
-        <a>
+        <a className="translate-x-0 block rotate-0 hover:rotate-[360deg] duration-700 ease-in-out transition-all "
+        style={{
+            width: size,
+            height: size,
+        }}
+        >
             <svg
                 width={size}
                 height={size}
