@@ -41,14 +41,17 @@ export default function ListProd({ prods, colorTheme, colorFont }) {
                         <div
                             className="relative w-full h-[250px]"
                         >
-
-                            <Image
-                                src={p.image}
-                                onError={onError}
-                                alt={p.name}
-                                layout='fill'
-                                objectFit='contain'
-                            />
+                            <Link href={'/produto/' + p.slug}>
+                                <a>
+                                    <Image
+                                        src={p.image}
+                                        onError={onError}
+                                        alt={p.name}
+                                        layout='fill'
+                                        objectFit='contain'
+                                    />
+                                </a>
+                            </Link>
                         </div>
                         <strong
                             className="font-Beastly font-normal text-xl lg:text-6xl"

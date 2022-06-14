@@ -10,7 +10,7 @@ function SubMenu({categories, bgColor, color}) {
         }}
         >
             {categories?.map((cat, i) =>
-                <div key={cat.slug} className="font-TTHovesBold">
+                <div key={cat.slug} className="font-TTHoves capitalize">
                     <Link href={`/categoria-produto/${cat.slug}`}>
                         <a>{cat.name}</a>
                     </Link>

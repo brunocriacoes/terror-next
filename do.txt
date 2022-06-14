@@ -10,3 +10,4 @@
 [x] categoria - imagem forçar tamanho padrão
 [x] banner - texto sobre sole versão desktop e mobile
 [x] menu - categoria decentralizado
+[] au atualiza pagina vendo rodapé o fundo menu fica transparente
